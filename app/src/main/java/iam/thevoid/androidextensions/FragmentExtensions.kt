@@ -1,4 +1,4 @@
-package ru.butik.android.helper.extensions
+package iam.thevoid.androidextensions
 
 import android.app.Activity
 import android.content.res.Configuration

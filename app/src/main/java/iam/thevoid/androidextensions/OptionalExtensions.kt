@@ -1,4 +1,4 @@
-package ru.butik.android.helper.extensions
+package iam.thevoid.androidextensions
 
 val Boolean?.safe: Boolean
     get() = this ?: false

@@ -1,4 +1,4 @@
-package ru.butik.android.helper.extensions
+package iam.thevoid.androidextensions
 
 import android.content.Context
 import android.content.res.Configuration
@@ -11,6 +11,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.annotation.*
 import androidx.core.view.ViewCompat
 import iam.thevoid.androidextensions.R
+import iam.thevoid.androidextensions.safe
 import kotlin.reflect.KClass
 
 var View.transitionNameCompat: String?
@@ -90,8 +91,8 @@ fun View?.show() = checkAndSetViewState(View.VISIBLE)
 fun View?.hide(needHide: Boolean = true) = checkAndSetViewState(if (needHide) View.INVISIBLE else View.VISIBLE)
 fun View?.gone(needGone: Boolean = true) = checkAndSetViewState(if (needGone) View.GONE else View.VISIBLE)
 
-inline fun <reified T : View> ViewGroup.findViewByClass(cls: KClass<T>): T? {
-    for (i in 0..(childCount - 1)) {
+inline fun <reified T : View> ViewGroup.findView(): T? {
+    for (i in 0 until childCount) {
         val view = getChildAt(i)
         if (view is T) {
             return view
