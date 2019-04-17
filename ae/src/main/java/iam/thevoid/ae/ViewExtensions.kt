@@ -1,4 +1,4 @@
-package iam.thevoid.androidextensions
+package iam.thevoid.ae
 
 import android.content.Context
 import android.content.res.Configuration
@@ -10,9 +10,6 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.*
 import androidx.core.view.ViewCompat
-import iam.thevoid.androidextensions.R
-import iam.thevoid.androidextensions.safe
-import kotlin.reflect.KClass
 
 var View.transitionNameCompat: String?
     get() = ViewCompat.getTransitionName(this)

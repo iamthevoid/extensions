@@ -1,4 +1,4 @@
-package iam.thevoid.androidextensions
+package iam.thevoid.ae
 
 val Boolean?.safe: Boolean
     get() = this ?: false

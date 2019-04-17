@@ -1,4 +1,4 @@
-package iam.thevoid.androidextensions
+package iam.thevoid.ae
 
 import java.util.regex.Pattern
 

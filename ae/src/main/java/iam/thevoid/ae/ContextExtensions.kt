@@ -1,4 +1,4 @@
-package iam.thevoid.androidextensions
+package iam.thevoid.ae
 
 import android.app.Activity
 import android.content.ContentResolver
