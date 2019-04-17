@@ -1,0 +1,1 @@
+https://bintray.com/beta/#/iamthevoid/maven/AndroidExtensions
