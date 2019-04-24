@@ -3,6 +3,8 @@ package iam.thevoid.ae
 import android.app.Activity
 import android.content.res.Configuration
 import android.graphics.drawable.Drawable
+import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.*
 import androidx.fragment.app.Fragment
@@ -13,15 +15,15 @@ import androidx.fragment.app.Fragment
 
 fun Fragment?.hideKeyboard() {
     (this?.context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager)
-            .toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
+        .toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
 }
 
 fun Fragment.showKeyboard() {
     (context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as? InputMethodManager)
-            ?.also { inputMethodManager ->
-                view?.rootView?.apply { post { inputMethodManager.showSoftInput(this, 0) } }
-                        ?: inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
-            }
+        ?.also { inputMethodManager ->
+            view?.rootView?.apply { post { inputMethodManager.showSoftInput(this, 0) } }
+                ?: inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+        }
 }
 
 /**
@@ -39,11 +41,13 @@ fun Fragment.dimenPxSize(@DimenRes res: Int): Int = activity.dimen(res)
 
 fun Fragment.drawable(@DrawableRes res: Int): Drawable? = activity.drawable(res)
 
-fun Fragment.coloredDrawable(@DrawableRes res: Int, @ColorRes colorRes: Int): Drawable? = activity.coloredDrawable(res, colorRes)
+fun Fragment.coloredDrawable(@DrawableRes res: Int, @ColorRes colorRes: Int): Drawable? =
+    activity.coloredDrawable(res, colorRes)
 
-fun Fragment.quantityString(@PluralsRes res : Int, quantity : Int, vararg args : Any?) = activity.quantityString(res, quantity, *args)
+fun Fragment.quantityString(@PluralsRes res: Int, quantity: Int, vararg args: Any?) =
+    activity.quantityString(res, quantity, *args)
 
-fun Fragment.quantityString(@PluralsRes res : Int, quantity : Int) = activity.quantityString(res, quantity)
+fun Fragment.quantityString(@PluralsRes res: Int, quantity: Int) = activity.quantityString(res, quantity)
 
 /**
  * WINDOW
@@ -53,7 +57,8 @@ val Fragment.statusBarHeight: Int
     get() = activity.statusBarHeight
 
 @JvmOverloads
-fun Fragment.getNavigationBarHeight(orientation: Int = Configuration.ORIENTATION_PORTRAIT): Int = activity.getNavigationBarHeight(orientation)
+fun Fragment.getNavigationBarHeight(orientation: Int = Configuration.ORIENTATION_PORTRAIT): Int =
+    activity.getNavigationBarHeight(orientation)
 
 val Fragment.screenWidth
     get() = activity.screenWidth
@@ -69,3 +74,13 @@ val Fragment.screenHeightDp
 
 val Fragment.dp: Float
     get() = activity.dp
+
+/**
+ * INFLATER
+ */
+
+val Fragment.inflater
+    get() = activity?.inflater
+
+fun Fragment.inflate(@LayoutRes res: Int, root: ViewGroup?, attachToRoot: Boolean = false) =
+    activity?.inflate(res, root, attachToRoot)

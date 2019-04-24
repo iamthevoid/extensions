@@ -1,4 +1,4 @@
-package iam.thevoid.androidextensions
+package iam.thevoid.aetest
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4

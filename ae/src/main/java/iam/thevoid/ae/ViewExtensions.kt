@@ -187,7 +187,8 @@ val View.dp: Float
  * INFLATER
  */
 
-fun View.inflate(@LayoutRes res: Int) = inflate(res, null)
+val View.inflater
+    get() = context.inflater
 
-fun View.inflate(@LayoutRes res: Int, root: ViewGroup?) =
-    LayoutInflater.from(context).inflate(res, root, false)
+fun View.inflate(@LayoutRes res: Int, root: ViewGroup?, attachToRoot: Boolean = false) =
+    context.inflate(res, root, attachToRoot)

@@ -1,5 +1,7 @@
 apply plugin: 'com.android.library'
 
+apply plugin: 'kotlin-android'
+
 apply plugin: 'com.novoda.bintray-release'
 
 android {
@@ -27,7 +29,7 @@ android {
 publish {
     groupId = 'iam.thevoid.ae'
     artifactId = 'android-extensions'
-    publishVersion = '0.1.2'
+    publishVersion = '0.1.5'
     desc = 'extension for android'
     licences = ['Apache-2.0']
     uploadName = 'AndroidExtensions'

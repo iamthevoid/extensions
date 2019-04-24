@@ -1,4 +1,4 @@
-package iam.thevoid.androidextensions
+package iam.thevoid.aetest
 
 import org.junit.Test
 

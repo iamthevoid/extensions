@@ -12,6 +12,8 @@ import android.net.Uri
 import android.os.Build
 import android.util.DisplayMetrics
 import android.util.TypedValue
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import androidx.annotation.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
@@ -138,3 +140,14 @@ fun Context.getResourceIdAttribute(@AttrRes attribute: Int): Int {
     theme.resolveAttribute(attribute, typedValue, true)
     return typedValue.resourceId
 }
+
+/**
+ * INFLATER
+ */
+
+
+val Context.inflater
+    get() = LayoutInflater.from(this)
+
+fun Context.inflate(@LayoutRes layoutRes : Int, container : ViewGroup? = null, attachToRoot : Boolean = false) =
+        inflater.inflate(layoutRes, container, attachToRoot)
