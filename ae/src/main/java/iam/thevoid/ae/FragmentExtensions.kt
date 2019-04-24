@@ -82,5 +82,5 @@ val Fragment.dp: Float
 val Fragment.inflater
     get() = activity?.inflater
 
-fun Fragment.inflate(@LayoutRes res: Int, root: ViewGroup?, attachToRoot: Boolean = false) =
+fun Fragment.inflate(@LayoutRes res: Int, root: ViewGroup? = null, attachToRoot: Boolean = false) =
     activity?.inflate(res, root, attachToRoot)

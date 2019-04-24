@@ -29,7 +29,7 @@ android {
 publish {
     groupId = 'iam.thevoid.ae'
     artifactId = 'android-extensions'
-    publishVersion = '0.1.5'
+    publishVersion = '0.1.6'
     desc = 'extension for android'
     licences = ['Apache-2.0']
     uploadName = 'AndroidExtensions'
