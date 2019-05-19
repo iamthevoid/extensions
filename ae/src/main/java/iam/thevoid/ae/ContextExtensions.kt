@@ -17,6 +17,7 @@ import android.view.ViewGroup
 import androidx.annotation.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
+import iam.thevoid.e.safe
 
 /**
  * ACTIVITY
@@ -36,7 +37,7 @@ fun Context.asFragmentActivity(): FragmentActivity = when (this) {
 }
 
 fun Context.permissionGranted(permission: String) =
-        packageManager.checkPermission(permission, packageName) == PackageManager.PERMISSION_GRANTED
+    packageManager.checkPermission(permission, packageName) == PackageManager.PERMISSION_GRANTED
 
 fun Context.permissionsGranted(permission: String, vararg permissions: String): Boolean {
     var granted = permissionGranted(permission)
@@ -76,13 +77,13 @@ val Context?.dp: Float
 
 val Context?.statusBarHeight: Int
     get() = if (this == null) 0 else resources.getIdentifier("status_bar_height", "dimen", "android")
-            .let { id -> if (id > 0) dimen(id) else 0 }
+        .let { id -> if (id > 0) dimen(id) else 0 }
 
 @JvmOverloads
 fun Context?.getNavigationBarHeight(orientation: Int = Configuration.ORIENTATION_PORTRAIT): Int =
-        if (this == null) 0 else (if (orientation == Configuration.ORIENTATION_PORTRAIT) "navigation_bar_height" else "navigation_bar_height_landscape").let { name ->
-            resources.getIdentifier(name, "dimen", "android").let { id -> if (id > 0) dimen(id) else 0 }
-        }
+    if (this == null) 0 else (if (orientation == Configuration.ORIENTATION_PORTRAIT) "navigation_bar_height" else "navigation_bar_height_landscape").let { name ->
+        resources.getIdentifier(name, "dimen", "android").let { id -> if (id > 0) dimen(id) else 0 }
+    }
 
 /**
  * RESOURCES
@@ -90,37 +91,41 @@ fun Context?.getNavigationBarHeight(orientation: Int = Configuration.ORIENTATION
 
 fun Context?.string(@StringRes res: Int, vararg any: Any?) = this?.getString(res, *any).safe
 
+fun Context?.integer(@IntegerRes res: Int, vararg any: Any?) = this?.resources?.getInteger(res).safe
+
 fun Context?.color(@ColorRes res: Int) = if (this == null) 0 else ContextCompat.getColor(this, res)
 
 inline fun <reified T : Number> Context?.dimen(@DimenRes res: Int): T =
-        (if (this == null) 0f else resources.getDimension(res)).let { dimen ->
-            when (T::class) {
-                Float::class -> dimen as T
-                Int::class -> dimen.toInt() as T
-                Double::class -> dimen.toDouble() as T
-                Long::class -> dimen.toLong() as T
-                Short::class -> dimen.toShort() as T
-                else -> throw IllegalArgumentException("Unknown dimen type")
-            }
+    (if (this == null) 0f else resources.getDimension(res)).let { dimen ->
+        when (T::class) {
+            Float::class -> dimen as T
+            Int::class -> dimen.toInt() as T
+            Double::class -> dimen.toDouble() as T
+            Long::class -> dimen.toLong() as T
+            Short::class -> dimen.toShort() as T
+            else -> throw IllegalArgumentException("Unknown dimen type")
         }
+    }
 
 fun Context?.drawable(@DrawableRes res: Int): Drawable? =
-        if (this == null) null else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) getDrawable(res) else resources.getDrawable(res)
+    if (this == null) null else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) getDrawable(res) else resources.getDrawable(
+        res
+    )
 
 fun Context?.coloredDrawable(@DrawableRes drawableResId: Int, @ColorRes filterColorResourceId: Int): Drawable? =
-        drawable(drawableResId).apply { this?.setColorFilter(color(filterColorResourceId), PorterDuff.Mode.SRC_ATOP) }
+    drawable(drawableResId).apply { this?.setColorFilter(color(filterColorResourceId), PorterDuff.Mode.SRC_ATOP) }
 
-fun Context?.quantityString(@PluralsRes res : Int, quantity : Int, vararg args : Any?) =
-        if (this == null) "" else resources.getQuantityString(res, quantity, *args)
+fun Context?.quantityString(@PluralsRes res: Int, quantity: Int, vararg args: Any?) =
+    if (this == null) "" else resources.getQuantityString(res, quantity, *args)
 
-fun Context?.quantityString(@PluralsRes res : Int, quantity : Int) = quantityString(res, quantity, quantity)
+fun Context?.quantityString(@PluralsRes res: Int, quantity: Int) = quantityString(res, quantity, quantity)
 
 fun Context.uriFromResource(@DrawableRes resId: Int): String = Uri.Builder()
-        .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
-        .authority(resources.getResourcePackageName(resId))
-        .appendPath(resources.getResourceTypeName(resId))
-        .appendPath(resources.getResourceEntryName(resId))
-        .build().toString()
+    .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
+    .authority(resources.getResourcePackageName(resId))
+    .appendPath(resources.getResourceTypeName(resId))
+    .appendPath(resources.getResourceEntryName(resId))
+    .build().toString()
 
 val Context.actionBarSizeResourse: Int
     get() =
@@ -149,5 +154,5 @@ fun Context.getResourceIdAttribute(@AttrRes attribute: Int): Int {
 val Context.inflater
     get() = LayoutInflater.from(this)
 
-fun Context.inflate(@LayoutRes layoutRes : Int, container : ViewGroup? = null, attachToRoot : Boolean = false) =
-        inflater.inflate(layoutRes, container, attachToRoot)
+fun Context.inflate(@LayoutRes layoutRes: Int, container: ViewGroup? = null, attachToRoot: Boolean = false) =
+    inflater.inflate(layoutRes, container, attachToRoot)

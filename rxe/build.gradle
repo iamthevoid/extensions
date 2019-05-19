@@ -1,0 +1,24 @@
+apply plugin: 'kotlin'
+
+apply plugin: 'com.novoda.bintray-release'
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    compile "io.reactivex.rxjava2:rxjava:2.2.8"
+    compile 'io.reactivex.rxjava2:rxkotlin:2.3.0'
+}
+
+publish {
+    groupId = 'iam.thevoid.rxe'
+    artifactId = 'rx-extensions'
+    publishVersion = "$libVersion"
+    desc = 'extension for rx'
+    licences = ['Apache-2.0']
+    uploadName = 'AndroidExtensions'
+    userOrg = 'iamthevoid'
+    website = 'https://github.com/iamthevoid/android-extensions.git'
+}
+
+
+sourceCompatibility = "7"
+targetCompatibility = "7"

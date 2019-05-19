@@ -1,4 +1,6 @@
-package iam.thevoid.ae
+package iam.thevoid.e
+
+import java.util.*
 
 val Boolean?.safe: Boolean
     get() = this ?: false
@@ -50,7 +52,9 @@ fun CharSequence?.isNotNullOrEmpty() = !isNullOrEmpty()
 fun CharSequence?.isNotNullOrBlank() = !isNullOrBlank()
 
 fun <E> List<E>?.isNotNullOrEmpty() =
-        this != null && this.isNotEmpty()
+        this != null && isNotEmpty()
 
 fun <K, V> Map<K, V>?.isNotNullOrEmpty() =
-        this != null && this.isNotEmpty()
+        this != null && isNotEmpty()
+
+fun <T> Optional<T>.nullable() : T? = orElse(null)

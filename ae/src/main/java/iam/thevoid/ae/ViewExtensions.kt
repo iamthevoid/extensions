@@ -4,12 +4,12 @@ import android.content.Context
 import android.content.res.Configuration
 import android.graphics.drawable.Drawable
 import android.os.Build
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.*
 import androidx.core.view.ViewCompat
+import iam.thevoid.e.safe
 
 var View.transitionNameCompat: String?
     get() = ViewCompat.getTransitionName(this)
@@ -182,6 +182,22 @@ val View.screenHeightDp
 val View.dp: Float
     get() = context.dp
 
+/**
+ * ACTIONS
+ */
+
+inline fun <reified V : View> V.onFirstAttachToWindow(crossinline whenAttached: V.() -> Unit) {
+    addOnAttachStateChangeListener(object : View.OnAttachStateChangeListener {
+        override fun onViewDetachedFromWindow(v: View?) {
+            removeOnAttachStateChangeListener(this)
+        }
+
+        override fun onViewAttachedToWindow(v: View?) {
+            removeOnAttachStateChangeListener(this)
+            (v as? V)?.whenAttached()
+        }
+    })
+}
 
 /**
  * INFLATER

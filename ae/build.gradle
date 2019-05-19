@@ -29,7 +29,7 @@ android {
 publish {
     groupId = 'iam.thevoid.ae'
     artifactId = 'android-extensions'
-    publishVersion = '0.1.6'
+    publishVersion = "$libVersion"
     desc = 'extension for android'
     licences = ['Apache-2.0']
     uploadName = 'AndroidExtensions'
@@ -39,6 +39,9 @@ publish {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(':e')
+
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     implementation 'com.android.support:appcompat-v7:28.0.0'
