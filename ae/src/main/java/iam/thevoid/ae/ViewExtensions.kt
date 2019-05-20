@@ -141,6 +141,8 @@ fun View.string(@StringRes res: Int, vararg obj: Any?): String = context.string(
 
 fun View.color(@ColorRes res: Int): Int = context.color(res)
 
+fun View.integer(@IntegerRes res: Int): Int = context.integer(res)
+
 inline fun <reified T : Number> View.dimen(@DimenRes res: Int): T = context.dimen(res)
 
 @Deprecated("Use \"dimen(@DimenRes res: Int)\" instead", level = DeprecationLevel.WARNING)

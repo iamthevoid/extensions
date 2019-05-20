@@ -1,4 +1,4 @@
-package ru.butik.android.helper.extensions
+package iam.thevoid.rxe
 
 import io.reactivex.*
 import io.reactivex.disposables.Disposable

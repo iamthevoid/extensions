@@ -34,6 +34,8 @@ fun Fragment.string(@StringRes res: Int, vararg obj: Any?): String = activity.st
 
 fun Fragment.color(@ColorRes res: Int): Int = activity.color(res)
 
+fun Fragment.integer(@IntegerRes res: Int): Int = activity.integer(res)
+
 inline fun <reified T : Number> Fragment.dimen(@DimenRes res: Int): T = activity.dimen(res)
 
 @Deprecated("Use \"dimen(@DimenRes res: Int)\" instead", level = DeprecationLevel.WARNING)
