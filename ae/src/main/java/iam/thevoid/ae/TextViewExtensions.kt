@@ -1,4 +1,4 @@
-package ru.butik.android.helper.extensions
+package iam.thevoid.ae
 
 import android.graphics.Paint
 import android.widget.TextView
