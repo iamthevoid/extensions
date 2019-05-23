@@ -10,12 +10,6 @@ fun String.safeLong() = safe { toLong() }
 fun String.safeFloat() = safe { toFloat() }
 fun String.safeDouble() = safe { toDouble() }
 
-fun String.capitalizeFirst() =
-    if (isBlank() || isEmpty()) this else get(0).let { replaceFirst(it, it.toUpperCase()) }
-
-fun String.decapitalizeFirst() =
-    if (isBlank() || isEmpty()) this else get(0).let { replaceFirst(it, it.toLowerCase()) }
-
 private inline fun <reified T : Number> String.safe(mapper: String.() -> T) : T = try {
     mapper()
 } catch (e: Exception) {
