@@ -1,0 +1,22 @@
+
+apply plugin: 'kotlin'
+
+apply plugin: 'com.novoda.bintray-release'
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+
+publish {
+    groupId = 'iam.thevoid.util'
+    artifactId = 'util'
+    publishVersion = "$libVersion"
+    desc = 'utils'
+    licences = ['Apache-2.0']
+    uploadName = 'AndroidExtensions'
+    userOrg = 'iamthevoid'
+    website = 'https://github.com/iamthevoid/android-extensions.git'
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"
