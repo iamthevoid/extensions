@@ -23,7 +23,7 @@ val Float?.safe: Float
 val Double?.safe: Double
     get() = this ?: 0.toDouble()
 
-val String?.safe: String
+val <T : CharSequence> T?.safe
     get() = this ?: ""
 
 val IntRange?.safe

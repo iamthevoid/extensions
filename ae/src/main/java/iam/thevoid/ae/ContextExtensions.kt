@@ -91,7 +91,7 @@ fun Context?.getNavigationBarHeight(orientation: Int = Configuration.ORIENTATION
 
 fun Context?.string(@StringRes res: Int, vararg any: Any?) = this?.getString(res, *any).safe
 
-fun Context?.integer(@IntegerRes res: Int, vararg any: Any?) = this?.resources?.getInteger(res).safe
+fun Context?.integer(@IntegerRes res: Int) = this?.resources?.getInteger(res).safe
 
 fun Context?.color(@ColorRes res: Int) = if (this == null) 0 else ContextCompat.getColor(this, res)
 
@@ -108,9 +108,11 @@ inline fun <reified T : Number> Context?.dimen(@DimenRes res: Int): T =
     }
 
 fun Context?.drawable(@DrawableRes res: Int): Drawable? =
-    if (this == null) null else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) getDrawable(res) else resources.getDrawable(
-        res
-    )
+    when {
+        this == null -> null
+        Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP -> getDrawable(res)
+        else -> resources.getDrawable(res)
+    }
 
 fun Context?.coloredDrawable(@DrawableRes drawableResId: Int, @ColorRes filterColorResourceId: Int): Drawable? =
     drawable(drawableResId).apply { this?.setColorFilter(color(filterColorResourceId), PorterDuff.Mode.SRC_ATOP) }
