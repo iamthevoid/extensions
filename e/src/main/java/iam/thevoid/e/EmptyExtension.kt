@@ -1,7 +1,7 @@
 package iam.thevoid.e
 
-fun CharSequence?.orElse(sequence: CharSequence) =
-    if (this != null && isNotBlank()) this else sequence
+fun <T : CharSequence> T?.orElse(item: T) =
+    if (this != null && isNotBlank()) this else item
 
 fun Byte?.orElse(byte: Byte) =
     if (this != null && this != 0.toByte()) this else byte
