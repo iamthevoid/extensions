@@ -30,10 +30,10 @@ fun String.ifEmpty(mapper: () -> String): String =
 fun String?.ifNull(mapper: () -> String): String =
     this ?: mapper()
 
-fun String?.ifNullOrBlank(mapper: () -> String): String =
+fun <T : CharSequence> T?.ifNullOrBlank(mapper: () -> T): T =
     if (isNullOrBlank()) mapper() else this.safe
 
-fun String?.ifNullOrEmpty(mapper: () -> String): String =
+fun <T : CharSequence> T?.ifNullOrEmpty(mapper: () -> T): T =
     if (isNullOrEmpty()) mapper() else this.safe
 
 
