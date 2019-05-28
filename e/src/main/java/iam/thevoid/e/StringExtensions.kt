@@ -3,18 +3,13 @@ package iam.thevoid.e
 import org.intellij.lang.annotations.RegExp
 import java.util.regex.Pattern
 
-fun String.safeByte() = safe { toByte() }
-fun String.safeShort() = safe { toShort() }
-fun String.safeInt() = safe { toInt() }
-fun String.safeLong() = safe { toLong() }
-fun String.safeFloat() = safe { toFloat() }
-fun String.safeDouble() = safe { toDouble() }
-
-private inline fun <reified T : Number> String.safe(mapper: String.() -> T) : T = try {
-    mapper()
-} catch (e: Exception) {
-    0 as T
-}
+fun String.safeBoolean() = try { toBoolean() } catch (e : Exception) { false }
+fun String.safeByte() = toByteOrNull().safe
+fun String.safeShort() = toShortOrNull().safe
+fun String.safeInt() = toIntOrNull().safe
+fun String.safeLong() = toLongOrNull().safe
+fun String.safeFloat() = toFloatOrNull().safe
+fun String.safeDouble() = toDoubleOrNull().safe
 
 val String?.extractDouble: Double
     get() = if (this == null) 0.toDouble() else Pattern.compile("\\.?\\d+(\\.\\d+)?").matcher(this).let {
