@@ -1,5 +1,6 @@
 package iam.thevoid.ae
 
+import android.annotation.TargetApi
 import android.content.Context
 import android.content.res.Configuration
 import android.graphics.drawable.Drawable
@@ -11,9 +12,17 @@ import androidx.annotation.*
 import androidx.core.view.ViewCompat
 import iam.thevoid.e.safe
 
+/**
+ * TRANSITION
+ */
+
 var View.transitionNameCompat: String?
     get() = ViewCompat.getTransitionName(this)
     set(value) = ViewCompat.setTransitionName(this, value)
+
+/**
+ * MARGIN
+ */
 
 var View.marginStart: Int
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -59,6 +68,10 @@ var View.marginBottom: Int
         layoutParams = params
     } ?: Unit
 
+/**
+ * VISIBILITY
+ */
+
 val View?.gone: Boolean
     get() = this?.visibility == View.GONE
 
@@ -88,6 +101,73 @@ fun View?.show() = checkAndSetViewState(View.VISIBLE)
 fun View?.hide(needHide: Boolean = true) = checkAndSetViewState(if (needHide) View.INVISIBLE else View.VISIBLE)
 fun View?.gone(needGone: Boolean = true) = checkAndSetViewState(if (needGone) View.GONE else View.VISIBLE)
 
+
+/**
+ * CLICKABLE
+ */
+
+// FULL SQUARE
+
+@TargetApi(value = Build.VERSION_CODES.M)
+fun View.setRippleClickForeground() {
+    foreground = context.drawable(context.selectableItemBackgroundResource)
+    setClickable()
+}
+
+fun View.setRippleClickBackground() {
+    setBackgroundResource(context.selectableItemBackgroundResource)
+    setClickable()
+}
+
+fun View.setRippleClickAnimation() =
+    if (canUseForeground) setRippleClickForeground() else setRippleClickBackground()
+
+// ROUNDED
+
+/**
+ * Looks bad
+ */
+@Deprecated("Looks bad, use View.setRippleClickBackground() instead")
+@TargetApi(value = Build.VERSION_CODES.M)
+fun View.setRoundRippleClickForeground() {
+    foreground = context.drawable(context.actionBarItemBackgroundResource)
+    setClickable()
+}
+
+fun View.setRoundRippleClickBackground() {
+    setBackgroundResource(context.actionBarItemBackgroundResource)
+    setClickable()
+}
+
+fun View.setRoundRippleClickAnimation() = setRoundRippleClickBackground()
+
+// HELPER
+
+private val canUseForeground
+    get() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+
+fun View.setClickable() {
+    isClickable = true
+    isFocusable = true
+}
+
+/**
+ * MEASURE SPEC
+ */
+
+val unspecified
+    get() = View.MeasureSpec.UNSPECIFIED
+
+val atMost
+    get() = View.MeasureSpec.AT_MOST
+
+val exactly
+    get() = View.MeasureSpec.EXACTLY
+
+/**
+ * HIERARCHY SEARCH
+ */
+
 inline fun <reified T : View> ViewGroup.findView(): T? {
     for (i in 0 until childCount) {
         val view = getChildAt(i)
@@ -107,6 +187,10 @@ fun View.rootView(): View {
     return root
 }
 
+/**
+ * KEYBOARD & FOCUS
+ */
+
 fun View.hideKeyboard() {
     clearFocus()
     post {
@@ -122,7 +206,7 @@ fun View.showKeyboard() {
     }.safe
 }
 
-fun View.clearFocus() {
+fun View.resetFocus() {
     clearFocus()
     isFocusableInTouchMode = false
     isFocusable = false
