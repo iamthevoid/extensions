@@ -1,6 +1,8 @@
 package iam.thevoid.e
 
-import java.util.*
+/**
+ * SAFE
+ */
 
 val Boolean?.safe: Boolean
     get() = this ?: false
@@ -26,6 +28,27 @@ val Double?.safe: Double
 val <T : CharSequence> T?.safe : T
     get() = this ?: "" as T
 
+val BooleanArray?.safe
+    get() = this ?: booleanArrayOf()
+
+val ByteArray?.safe
+    get() = this ?: byteArrayOf()
+
+val ShortArray?.safe
+    get() = this ?: shortArrayOf()
+
+val IntArray?.safe
+    get() = this ?: intArrayOf()
+
+val LongArray?.safe
+    get() = this ?: longArrayOf()
+
+val FloatArray?.safe
+    get() = this ?: floatArrayOf()
+
+val DoubleArray?.safe
+    get() = this ?: doubleArrayOf()
+
 val IntRange?.safe
     get() = this ?: 0..0
 
@@ -41,20 +64,39 @@ val <E> List<E>?.safe: List<E>
 val <K, V> Map<K, V>?.safe: Map<K, V>
     get() = this ?: emptyMap()
 
+/**
+ * SAFE MUTABLE
+ */
+
 val <E> List<E>?.safeMutable: MutableList<E>
     get() = (if (this is MutableList<E>) this else this?.toMutableList()) ?: mutableListOf()
 
 val <K, V> Map<K, V>?.safeMutable: MutableMap<K, V>
     get() = (if (this is MutableMap<K, V>) this else this?.toMutableMap()) ?: mutableMapOf()
 
+/**
+ * CHECKERS
+ */
+
 fun CharSequence?.isNotNullOrEmpty() = !isNullOrEmpty()
 
 fun CharSequence?.isNotNullOrBlank() = !isNullOrBlank()
 
-fun <E> List<E>?.isNotNullOrEmpty() =
-        this != null && isNotEmpty()
+fun <E> List<E>?.isNotNullOrEmpty() = this != null && isNotEmpty()
 
-fun <K, V> Map<K, V>?.isNotNullOrEmpty() =
-        this != null && isNotEmpty()
+fun <E> List<E>?.isNullOrEmpty() : Boolean = this == null || isEmpty()
 
-fun <T> Optional<T>.nullable() : T? = orElse(null)
+fun <K, V> Map<K, V>?.isNotNullOrEmpty() = this != null && isNotEmpty()
+
+fun <K, V> Map<K, V>?.isNullOrEmpty() = this == null || isEmpty()
+
+fun <T> T?.isNull() = this == null
+
+fun <T> T?.isNotNull() = this != null
+
+/**
+ * ACTIONS
+ */
+
+fun <T> T?.ifNotNull(toBoolean: T.() -> Boolean) =
+    if (this != null) toBoolean() else false
