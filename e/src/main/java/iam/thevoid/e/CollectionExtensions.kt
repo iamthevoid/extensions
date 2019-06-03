@@ -56,6 +56,12 @@ fun <K, V> Map<K, List<V>>.sectionKey(element: V): K? {
  * LIST
  */
 
+fun <T> T.mergeWith(items: Iterable<T>)  =
+    mutableListOf(this).apply { addAll(items) }
+
+fun <T> T.mergeWith(vararg items: T) =
+    mutableListOf(this).apply { addAll(items) }
+
 fun <E : Comparable<E>> MutableList<E>.sortedSelf(): MutableList<E> =
     also { sortWith(Comparator { o1, o2 -> o1.compareTo(o2) }) }
 

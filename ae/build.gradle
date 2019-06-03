@@ -27,14 +27,14 @@ android {
 }
 
 publish {
-    groupId = 'iam.thevoid.ae'
-    artifactId = 'android-extensions'
-    publishVersion = "$libVersion"
+    artifactId = 'android'
     desc = 'extension for android'
-    licences = ['Apache-2.0']
-    uploadName = 'AndroidExtensions'
-    userOrg = 'iamthevoid'
-    website = 'https://github.com/iamthevoid/android-extensions.git'
+    groupId = "$libGroupId"
+    licences = ["$libLicence"]
+    publishVersion = "$libVersion"
+    uploadName = "$libUploadName"
+    userOrg = "$libUserOrg"
+    website = "$libWebSite"
 }
 
 dependencies {

@@ -9,14 +9,14 @@ dependencies {
 }
 
 publish {
-    groupId = 'iam.thevoid.rxe'
-    artifactId = 'rx-extensions'
+    artifactId = 'rx'
+    desc = 'extension for rx java'
+    groupId = "$libGroupId"
+    licences = ["$libLicence"]
     publishVersion = "$libVersion"
-    desc = 'extension for rx'
-    licences = ['Apache-2.0']
-    uploadName = 'AndroidExtensions'
-    userOrg = 'iamthevoid'
-    website = 'https://github.com/iamthevoid/android-extensions.git'
+    uploadName = "$libUploadName"
+    userOrg = "$libUserOrg"
+    website = "$libWebSite"
 }
 
 

@@ -8,14 +8,14 @@ dependencies {
 }
 
 publish {
-    groupId = 'iam.thevoid.util'
     artifactId = 'util'
+    desc = 'utilites'
+    groupId = 'iam.thevoid.util'
+    licences = ["$libLicence"]
     publishVersion = "$libVersion"
-    desc = 'utils'
-    licences = ['Apache-2.0']
-    uploadName = 'AndroidExtensions'
-    userOrg = 'iamthevoid'
-    website = 'https://github.com/iamthevoid/android-extensions.git'
+    uploadName = "$libUploadName"
+    userOrg = "$libUserOrg"
+    website = "$libWebSite"
 }
 
 sourceCompatibility = "7"

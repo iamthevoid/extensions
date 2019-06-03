@@ -17,7 +17,12 @@ buildscript {
 }
 
 ext {
-    libVersion = '0.3.6'
+    libVersion = '0.4.1'
+    libGroupId = "iam.thevoid.extensions"
+    libLicence = "Apache-2.0"
+    libUploadName = "extensions"
+    libUserOrg = "iamthevoid"
+    libWebSite = "https://github.com/iamthevoid/extensions.git"
 }
 
 allprojects {

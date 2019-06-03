@@ -8,14 +8,14 @@ dependencies {
 }
 
 publish {
-    groupId = 'iam.thevoid.e'
-    artifactId = 'extensions'
+    artifactId = 'pure'
+    desc = 'Extensions for pure kotlin (no dependencies)'
+    groupId = "$libGroupId"
+    licences = ["$libLicence"]
     publishVersion = "$libVersion"
-    desc = 'extension'
-    licences = ['Apache-2.0']
-    uploadName = 'AndroidExtensions'
-    userOrg = 'iamthevoid'
-    website = 'https://github.com/iamthevoid/android-extensions.git'
+    uploadName = "$libUploadName"
+    userOrg = "$libUserOrg"
+    website = "$libWebSite"
 }
 
 
