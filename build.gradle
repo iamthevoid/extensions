@@ -42,7 +42,7 @@ task clean(type: Delete) {
 task versionTxt()  {
     doLast {
         new File("$projectDir/extensions.svg").text = """
-<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="108" height="20">
+<svg xmlns="http://www.w3.org/2000/svg" width="108" height="20">
     <linearGradient id="b" x2="0" y2="100%">
         <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
         <stop offset="1" stop-opacity=".1"/>
@@ -61,7 +61,6 @@ task versionTxt()  {
         <text x="875" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="290">0.4.1</text>
         <text x="875" y="140" transform="scale(.1)" textLength="290">${libVersion}</text>
     </g>
-    <a xlink:href="https://bintray.com/beta/#/iamthevoid/maven/extensions"></a>
 </svg>
 """
     }
