@@ -110,8 +110,10 @@ fun View?.gone(needGone: Boolean = true) = checkAndSetViewState(if (needGone) Vi
 
 @TargetApi(value = Build.VERSION_CODES.M)
 fun View.setRippleClickForeground() {
-    foreground = context.drawable(context.selectableItemBackgroundResource)
-    setClickable()
+    if (canUseForeground) {
+        foreground = context.drawable(context.selectableItemBackgroundResource)
+        setClickable()
+    }
 }
 
 fun View.setRippleClickBackground() {
@@ -130,8 +132,10 @@ fun View.setRippleClickAnimation() =
 @Deprecated("Looks bad, use View.setRippleClickBackground() instead")
 @TargetApi(value = Build.VERSION_CODES.M)
 fun View.setRoundRippleClickForeground() {
-    foreground = context.drawable(context.actionBarItemBackgroundResource)
-    setClickable()
+    if (canUseForeground) {
+        foreground = context.drawable(context.actionBarItemBackgroundResource)
+        setClickable()
+    }
 }
 
 fun View.setRoundRippleClickBackground() {
