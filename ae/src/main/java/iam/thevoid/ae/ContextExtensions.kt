@@ -51,6 +51,15 @@ fun Context.permissionsGranted(permission: String, vararg permissions: String): 
     return granted
 }
 
+/**
+ * SERVICE
+ */
+
+@RequiresApi(Build.VERSION_CODES.M)
+inline fun <reified T> Context.systemService() = getSystemService(T::class.java)
+
+fun <T> Context.systemService(name: String) = getSystemService(name) as? T
+
 
 /**
  * WINDOW
