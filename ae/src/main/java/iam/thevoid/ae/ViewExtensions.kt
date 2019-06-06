@@ -156,32 +156,9 @@ fun View.setClickable() {
 }
 
 /**
- * MEASURE SPEC
- */
-
-val unspecified
-    get() = View.MeasureSpec.UNSPECIFIED
-
-val atMost
-    get() = View.MeasureSpec.AT_MOST
-
-val exactly
-    get() = View.MeasureSpec.EXACTLY
-
-/**
  * HIERARCHY SEARCH
  */
 
-inline fun <reified T : View> ViewGroup.findView(): T? {
-    for (i in 0 until childCount) {
-        val view = getChildAt(i)
-        if (view is T) {
-            return view
-        }
-    }
-
-    return null
-}
 
 fun View.rootView(): View {
     var root = this
