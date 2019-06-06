@@ -22,7 +22,7 @@ fun Double?.orElse(double : Double) =
     if (this != null && this != 0.toDouble()) this else double
 
 fun <T> List<T>?.orElse(list : List<T>) =
-    if (this != null && isEmpty()) this else list
+    if (this != null && isNotEmpty()) this else list
 
 fun <K, V> Map<K, V>?.orElse(map : Map<K, V>) =
-    if (this != null && isEmpty()) this else map
+    if (this != null && isNotEmpty()) this else map
