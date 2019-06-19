@@ -13,10 +13,50 @@ inline fun <E> Iterable<E>.forEachApplyIndexed(action: E.(index: Int) -> Unit) {
 }
 
 /**
+ * ARRAY
+ */
+
+fun <T> Array<T>?.isNullOrEmpty() = this == null || isEmpty()
+
+fun  BooleanArray?.isNullOrEmpty() = this == null || isEmpty()
+
+fun  CharArray?.isNullOrEmpty() = this == null || isEmpty()
+
+fun  ByteArray?.isNullOrEmpty() = this == null || isEmpty()
+
+fun  ShortArray?.isNullOrEmpty() = this == null || isEmpty()
+
+fun  IntArray?.isNullOrEmpty() = this == null || isEmpty()
+
+fun  LongArray?.isNullOrEmpty() = this == null || isEmpty()
+
+fun  FloatArray?.isNullOrEmpty() = this == null || isEmpty()
+
+fun  DoubleArray?.isNullOrEmpty() = this == null || isEmpty()
+
+fun <T> Array<T>?.isNotNullOrEmpty() = this != null && isNotEmpty()
+
+fun BooleanArray?.isNotNullOrEmpty() = this != null && isNotEmpty()
+
+fun CharArray?.isNotNullOrEmpty() = this != null && isNotEmpty()
+
+fun ByteArray?.isNotNullOrEmpty() = this != null && isNotEmpty()
+
+fun ShortArray?.isNotNullOrEmpty() = this != null && isNotEmpty()
+
+fun IntArray?.isNotNullOrEmpty() = this != null && isNotEmpty()
+
+fun LongArray?.isNotNullOrEmpty() = this != null && isNotEmpty()
+
+fun FloatArray?.isNotNullOrEmpty() = this != null && isNotEmpty()
+
+fun DoubleArray?.isNotNullOrEmpty() = this != null && isNotEmpty()
+
+/**
  * SET
  */
 
-fun <T> Set<T>?.isEmpty(): Boolean = if (this == null) true else isEmpty()
+fun <T> Set<T>?.isNullOrEmpty(): Boolean = this == null || isEmpty()
 
 /**
  * MAP

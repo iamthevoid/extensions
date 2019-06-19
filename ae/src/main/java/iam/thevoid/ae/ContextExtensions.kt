@@ -36,6 +36,13 @@ fun Context.asFragmentActivity(): FragmentActivity = when (this) {
     else -> throw IllegalStateException("Context $this NOT contains activity!")
 }
 
+fun Context.needPermissionsFor(action : () -> Unit) = try {
+    action.invoke()
+    true
+} catch (e : SecurityException) {
+    false
+}
+
 fun Context.permissionGranted(permission: String) =
     packageManager.checkPermission(permission, packageName) == PackageManager.PERMISSION_GRANTED
 
