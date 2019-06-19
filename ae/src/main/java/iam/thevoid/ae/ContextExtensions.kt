@@ -38,9 +38,9 @@ fun Context.asFragmentActivity(): FragmentActivity = when (this) {
 
 fun Context.needPermissionsFor(action : () -> Unit) = try {
     action.invoke()
-    true
-} catch (e : SecurityException) {
     false
+} catch (e : SecurityException) {
+    true
 }
 
 fun Context.permissionGranted(permission: String) =
