@@ -4,75 +4,56 @@ package iam.thevoid.e
  * SAFE
  */
 
-val Boolean?.safe: Boolean
-    get() = this ?: false
+fun Boolean?.safe(): Boolean = this ?: false
 
-val Byte?.safe: Byte
-    get() = this ?: 0
+fun Byte?.safe(): Byte = this ?: 0
 
-val Short?.safe: Short
-    get() = this ?: 0
+fun Short?.safe(): Short = this ?: 0
 
-val Int?.safe: Int
-    get() = this ?: 0
+fun Int?.safe(): Int = this ?: 0
 
-val Long?.safe: Long
-    get() = this ?: 0
+fun Long?.safe(): Long = this ?: 0
 
-val Float?.safe: Float
-    get() = this ?: 0f
+fun Float?.safe(): Float = this ?: 0f
 
-val Double?.safe: Double
-    get() = this ?: 0.toDouble()
+fun Double?.safe(): Double = this ?: 0.toDouble()
 
-val <T : CharSequence> T?.safe : T
-    get() = this ?: "" as T
+fun <T : CharSequence> T?.safe() : T = this ?: "" as T
 
-val BooleanArray?.safe
-    get() = this ?: booleanArrayOf()
+fun BooleanArray?.safe() = this ?: booleanArrayOf()
 
-val ByteArray?.safe
-    get() = this ?: byteArrayOf()
+fun ByteArray?.safe() = this ?: byteArrayOf()
 
-val ShortArray?.safe
-    get() = this ?: shortArrayOf()
+fun ShortArray?.safe() = this ?: shortArrayOf()
 
-val IntArray?.safe
-    get() = this ?: intArrayOf()
+fun IntArray?.safe() = this ?: intArrayOf()
 
-val LongArray?.safe
-    get() = this ?: longArrayOf()
+fun LongArray?.safe() = this ?: longArrayOf()
 
-val FloatArray?.safe
-    get() = this ?: floatArrayOf()
+fun FloatArray?.safe() = this ?: floatArrayOf()
 
-val DoubleArray?.safe
-    get() = this ?: doubleArrayOf()
+fun DoubleArray?.safe() = this ?: doubleArrayOf()
 
-val IntRange?.safe
-    get() = this ?: 0..0
+fun IntRange?.safe() = this ?: 0..0
 
-val LongRange?.safe
-    get() = this ?: 0..0
+fun LongRange?.safe() = this ?: 0..0
 
 inline fun <reified E> Array<E>?.safe(): Array<E> =
         this ?: emptyArray()
 
-val <E> List<E>?.safe: List<E>
-    get() = this ?: emptyList()
+fun <E> List<E>?.safe(): List<E> = this ?: emptyList()
 
-val <K, V> Map<K, V>?.safe: Map<K, V>
-    get() = this ?: emptyMap()
+fun <K, V> Map<K, V>?.safe(): Map<K, V> = this ?: emptyMap()
 
 /**
  * SAFE MUTABLE
  */
 
-val <E> List<E>?.safeMutable: MutableList<E>
-    get() = (if (this is MutableList<E>) this else this?.toMutableList()) ?: mutableListOf()
+fun <E> List<E>?.safeMutable(): MutableList<E> =
+    (if (this is MutableList<E>) this else this?.toMutableList()) ?: mutableListOf()
 
-val <K, V> Map<K, V>?.safeMutable: MutableMap<K, V>
-    get() = (if (this is MutableMap<K, V>) this else this?.toMutableMap()) ?: mutableMapOf()
+fun <K, V> Map<K, V>?.safeMutable(): MutableMap<K, V> = 
+    (if (this is MutableMap<K, V>) this else this?.toMutableMap()) ?: mutableMapOf()
 
 /**
  * CHECKERS
