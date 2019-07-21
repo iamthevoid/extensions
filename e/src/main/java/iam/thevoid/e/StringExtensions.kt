@@ -3,14 +3,15 @@ package iam.thevoid.e
 import org.intellij.lang.annotations.RegExp
 import java.util.regex.Pattern
 
-fun String.safeBoolean() = try { toBoolean() } catch (e : Exception) { false }
-fun String.safeByte() = toByteOrNull().safe
-fun String.safeShort() = toShortOrNull().safe
-fun String.safeInt() = toIntOrNull().safe
-fun String.safeLong() = toLongOrNull().safe
-fun String.safeFloat() = toFloatOrNull().safe
-fun String.safeDouble() = toDoubleOrNull().safe
+fun String.safeBoolean(default : Boolean = false) = try { toBoolean() } catch (e : Exception) { default }
+fun String.safeByte(default : Byte = 0) = toByteOrNull().safe(default)
+fun String.safeShort(default : Short = 0) = toShortOrNull().safe(default)
+fun String.safeInt(default : Int = 0) = toIntOrNull().safe(default)
+fun String.safeLong(default : Long = 0L) = toLongOrNull().safe(default)
+fun String.safeFloat(default : Float = 0f) = toFloatOrNull().safe(default)
+fun String.safeDouble(default : Double = 0.0) = toDoubleOrNull().safe(default)
 
+@Deprecated("will be removed in next versions")
 val String?.extractDouble: Double
     get() = if (this == null) 0.toDouble() else Pattern.compile("\\.?\\d+(\\.\\d+)?").matcher(this).let {
         if (it.find()) ("0${it.group(0)}").toDouble() else 0.toDouble()
@@ -26,10 +27,10 @@ fun String?.ifNull(mapper: () -> String): String =
     this ?: mapper()
 
 fun <T : CharSequence> T?.ifNullOrBlank(mapper: () -> T): T =
-    if (isNullOrBlank()) mapper() else this.safe
+    if (isNullOrBlank()) mapper() else this.safe()
 
 fun <T : CharSequence> T?.ifNullOrEmpty(mapper: () -> T): T =
-    if (isNullOrEmpty()) mapper() else this.safe
+    if (isNullOrEmpty()) mapper() else this.safe()
 
 
 fun String.containsAny(vararg containment: String): Boolean = containment.any { contains(it) }

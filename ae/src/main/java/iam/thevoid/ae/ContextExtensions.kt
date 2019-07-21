@@ -15,6 +15,7 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import iam.thevoid.e.safe
@@ -33,6 +34,13 @@ fun Context.asFragmentActivity(): FragmentActivity = when (this) {
     is FragmentActivity -> this
     is Activity -> throw IllegalStateException("Context $this NOT support-v4 Activity")
     is ContextWrapper -> baseContext.asFragmentActivity()
+    else -> throw IllegalStateException("Context $this NOT contains activity!")
+}
+
+fun Context.asAppCompatActivity(): AppCompatActivity = when (this) {
+    is AppCompatActivity -> this
+    is Activity -> throw IllegalStateException("Context $this NOT support-v4 Activity")
+    is ContextWrapper -> baseContext.asAppCompatActivity()
     else -> throw IllegalStateException("Context $this NOT contains activity!")
 }
 
@@ -105,9 +113,9 @@ fun Context?.getNavigationBarHeight(orientation: Int = Configuration.ORIENTATION
  * RESOURCES
  */
 
-fun Context?.string(@StringRes res: Int, vararg any: Any?) = this?.getString(res, *any).safe
+fun Context?.string(@StringRes res: Int, vararg any: Any?) = this?.getString(res, *any).safe()
 
-fun Context?.integer(@IntegerRes res: Int) = this?.resources?.getInteger(res).safe
+fun Context?.integer(@IntegerRes res: Int) = this?.resources?.getInteger(res).safe()
 
 fun Context?.color(@ColorRes res: Int) = if (this == null) 0 else ContextCompat.getColor(this, res)
 

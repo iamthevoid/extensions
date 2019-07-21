@@ -4,75 +4,57 @@ package iam.thevoid.e
  * SAFE
  */
 
-val Boolean?.safe: Boolean
-    get() = this ?: false
+fun Boolean?.safe(default: Boolean = false): Boolean = this ?: default
 
-val Byte?.safe: Byte
-    get() = this ?: 0
+fun Byte?.safe(default: Byte = 0): Byte = this ?: default
 
-val Short?.safe: Short
-    get() = this ?: 0
+fun Short?.safe(default: Short = 0): Short = this ?: default
 
-val Int?.safe: Int
-    get() = this ?: 0
+fun Int?.safe(default: Int = 0): Int = this ?: default
 
-val Long?.safe: Long
-    get() = this ?: 0
+fun Long?.safe(default: Long = 0): Long = this ?: default
 
-val Float?.safe: Float
-    get() = this ?: 0f
+fun Float?.safe(default: Float = 0f): Float = this ?: default
 
-val Double?.safe: Double
-    get() = this ?: 0.toDouble()
+fun Double?.safe(default: Double = 0.toDouble()): Double = this ?: default
 
-val <T : CharSequence> T?.safe : T
-    get() = this ?: "" as T
 
-val BooleanArray?.safe
-    get() = this ?: booleanArrayOf()
+fun <T : CharSequence> T?.safe(default: T = "" as T): T = this ?: default
 
-val ByteArray?.safe
-    get() = this ?: byteArrayOf()
+fun BooleanArray?.safe(default: BooleanArray = booleanArrayOf()): BooleanArray = this ?: default
 
-val ShortArray?.safe
-    get() = this ?: shortArrayOf()
+fun ByteArray?.safe(default: ByteArray = byteArrayOf()): ByteArray = this ?: default
 
-val IntArray?.safe
-    get() = this ?: intArrayOf()
+fun ShortArray?.safe(default: ShortArray = shortArrayOf()): ShortArray = this ?: default
 
-val LongArray?.safe
-    get() = this ?: longArrayOf()
+fun IntArray?.safe(default: IntArray = intArrayOf()): IntArray = this ?: default
 
-val FloatArray?.safe
-    get() = this ?: floatArrayOf()
+fun LongArray?.safe(default: LongArray = longArrayOf()): LongArray = this ?: default
 
-val DoubleArray?.safe
-    get() = this ?: doubleArrayOf()
+fun FloatArray?.safe(default: FloatArray = floatArrayOf()): FloatArray = this ?: default
 
-val IntRange?.safe
-    get() = this ?: 0..0
+fun DoubleArray?.safe(default: DoubleArray = doubleArrayOf()): DoubleArray = this ?: default
 
-val LongRange?.safe
-    get() = this ?: 0..0
+fun IntRange?.safe(default: IntRange = 0..0): IntRange = this ?: default
+
+fun LongRange?.safe(default: LongRange = 0L..0L): LongRange = this ?: default
 
 inline fun <reified E> Array<E>?.safe(): Array<E> =
-        this ?: emptyArray()
+    this ?: emptyArray()
 
-val <E> List<E>?.safe: List<E>
-    get() = this ?: emptyList()
+fun <E> List<E>?.safe(default: List<E> = emptyList()): List<E> = this ?: default
 
-val <K, V> Map<K, V>?.safe: Map<K, V>
-    get() = this ?: emptyMap()
+fun <K, V> Map<K, V>?.safe(default: Map<K, V> = emptyMap()): Map<K, V> = this ?: default
 
 /**
  * SAFE MUTABLE
  */
 
-val <E> List<E>?.safeMutable: MutableList<E>
-    get() = (if (this is MutableList<E>) this else this?.toMutableList()) ?: mutableListOf()
+fun <E> List<E>?.safeMutable(default: MutableList<E> = mutableListOf()): MutableList<E> =
+    (if (this is MutableList<E>) this else this?.toMutableList()) ?: default
 
-val <K, V> Map<K, V>?.safeMutable: MutableMap<K, V>
-    get() = (if (this is MutableMap<K, V>) this else this?.toMutableMap()) ?: mutableMapOf()
+fun <K, V> Map<K, V>?.safeMutable(default: MutableMap<K, V> = mutableMapOf()): MutableMap<K, V> =
+    (if (this is MutableMap<K, V>) this else this?.toMutableMap()) ?: default
 
 /**
  * CHECKERS
@@ -84,7 +66,7 @@ fun CharSequence?.isNotNullOrBlank() = !isNullOrBlank()
 
 fun <E> List<E>?.isNotNullOrEmpty() = this != null && isNotEmpty()
 
-fun <E> List<E>?.isNullOrEmpty() : Boolean = this == null || isEmpty()
+fun <E> List<E>?.isNullOrEmpty(): Boolean = this == null || isEmpty()
 
 fun <K, V> Map<K, V>?.isNotNullOrEmpty() = this != null && isNotEmpty()
 

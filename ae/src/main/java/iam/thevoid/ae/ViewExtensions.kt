@@ -26,14 +26,14 @@ var View.transitionNameCompat: String?
 
 var View.marginStart: Int
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    get() = (this.layoutParams as? ViewGroup.MarginLayoutParams)?.marginStart.safe
+    get() = (this.layoutParams as? ViewGroup.MarginLayoutParams)?.marginStart.safe()
     set(value) = (this.layoutParams as? ViewGroup.MarginLayoutParams)?.let { params ->
         params.setMargins(value, marginTop, marginRight, marginBottom)
         layoutParams = params
     } ?: Unit
 
 var View.marginRight: Int
-    get() = (this.layoutParams as? ViewGroup.MarginLayoutParams)?.rightMargin.safe
+    get() = (this.layoutParams as? ViewGroup.MarginLayoutParams)?.rightMargin.safe()
     set(value) = (this.layoutParams as? ViewGroup.MarginLayoutParams)?.let { params ->
         params.setMargins(marginLeft, marginTop, value, marginBottom)
         layoutParams = params
@@ -41,28 +41,28 @@ var View.marginRight: Int
 
 var View.marginEnd: Int
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    get() = (this.layoutParams as? ViewGroup.MarginLayoutParams)?.marginEnd.safe
+    get() = (this.layoutParams as? ViewGroup.MarginLayoutParams)?.marginEnd.safe()
     set(value) = (this.layoutParams as? ViewGroup.MarginLayoutParams)?.let { params ->
         params.setMargins(marginLeft, marginTop, value, marginBottom)
         layoutParams = params
     } ?: Unit
 
 var View.marginLeft: Int
-    get() = (this.layoutParams as? ViewGroup.MarginLayoutParams)?.leftMargin.safe
+    get() = (this.layoutParams as? ViewGroup.MarginLayoutParams)?.leftMargin.safe()
     set(value) = (this.layoutParams as? ViewGroup.MarginLayoutParams)?.let { params ->
         params.setMargins(value, marginTop, marginRight, marginBottom)
         layoutParams = params
     } ?: Unit
 
 var View.marginTop: Int
-    get() = (this.layoutParams as? ViewGroup.MarginLayoutParams)?.topMargin.safe
+    get() = (this.layoutParams as? ViewGroup.MarginLayoutParams)?.topMargin.safe()
     set(value) = (this.layoutParams as? ViewGroup.MarginLayoutParams)?.let { params ->
         params.setMargins(marginLeft, value, marginRight, marginBottom)
         layoutParams = params
     } ?: Unit
 
 var View.marginBottom: Int
-    get() = (this.layoutParams as? ViewGroup.MarginLayoutParams)?.bottomMargin.safe
+    get() = (this.layoutParams as? ViewGroup.MarginLayoutParams)?.bottomMargin.safe()
     set(value) = (this.layoutParams as? ViewGroup.MarginLayoutParams)?.let { params ->
         params.setMargins(marginLeft, marginTop, marginRight, value)
         layoutParams = params
@@ -177,14 +177,14 @@ fun View.hideKeyboard() {
     post {
         (context?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager)
             ?.hideSoftInputFromWindow(windowToken, 0)
-    }.safe
+    }.safe()
 }
 
 fun View.showKeyboard() {
     post {
         (context?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager)
             ?.showSoftInput(this, 0)
-    }.safe
+    }.safe()
 }
 
 fun View.resetFocus() {

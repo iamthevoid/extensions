@@ -115,7 +115,7 @@ fun <T> MutableList<T>.swap(from: Int, to: Int) {
 }
 
 val <E> List<E>?.arrayList: ArrayList<E>
-    get() = if (this is ArrayList) this else ArrayList(safe)
+    get() = if (this is ArrayList) this else ArrayList(safe())
 
 fun <E> List<E>.indexOf(item: E?): Int = if (item == null) -1 else indexOf(item)
 
