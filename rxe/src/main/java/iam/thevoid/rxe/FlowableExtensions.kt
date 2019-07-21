@@ -12,3 +12,5 @@ fun <First, Second, Res> Flowable<First>.zipWith(second: Flowable<Second>, zipFu
 
 fun <First, Second> Flowable<First>.zipWith(second: Flowable<Second>): Flowable<Pair<First, Second>> =
     zipWith(second) { t1, t2 -> Pair(t1, t2) }
+
+fun <T, R> Flowable<T>.mapSelf(mapper : T.() -> R) = map { it.mapper() }

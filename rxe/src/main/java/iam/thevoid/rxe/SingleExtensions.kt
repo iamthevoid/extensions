@@ -18,3 +18,5 @@ fun <First, Second, Res> Single<First>.zipWith(second: Single<Second>, zipFun: (
 
 fun <First, Second> Single<First>.zipWith(second: Single<Second>): Single<Pair<First, Second>> =
     zipWith(second) { t1, t2 -> Pair(t1, t2) }
+
+fun <T, R> Single<T>.mapSelf(mapper : T.() -> R) = map { it.mapper() }

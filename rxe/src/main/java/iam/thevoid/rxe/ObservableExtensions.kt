@@ -20,3 +20,5 @@ fun <First, Second, Res> Observable<First>.zipWith(second: Observable<Second>, z
 
 fun <First, Second> Observable<First>.zipWith(second: Observable<Second>): Observable<Pair<First, Second>> =
     zipWith(second) { t1, t2 -> Pair(t1, t2) }
+
+fun <T, R> Observable<T>.mapSelf(mapper : T.() -> R) = map { it.mapper() }
