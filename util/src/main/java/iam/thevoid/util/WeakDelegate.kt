@@ -5,7 +5,7 @@ import kotlin.reflect.KProperty
 
 class WeakDelegate<T> {
 
-    private var reference: WeakReference<T> = WeakReference(null)
+    private var reference: WeakReference<T> = WeakReference<T>(null)
 
     operator fun setValue(host: Any, property: KProperty<*>, newReference: T?) {
         reference = WeakReference<T>(newReference)
