@@ -33,25 +33,25 @@ fun TextView.setDrawableBottom(@DrawableRes res: Int, width: Int = 0, height: In
     setDrawableBottom(drawable(res), width, height)
 
 fun TextView.setDrawableBottom(drawable: Drawable?, width: Int = 0, height: Int = width) =
-        setDrawables(bottom = drawable, width = width, height = height)
+    setDrawables(bottom = drawable, width = width, height = height)
 
 fun TextView.setDrawableTop(@DrawableRes res: Int, width: Int = 0, height: Int = width) =
     setDrawableTop(drawable(res), width, height)
 
 fun TextView.setDrawableTop(drawable: Drawable?, width: Int = 0, height: Int = width) =
-        setDrawables(top = drawable, width = width, height = height)
+    setDrawables(top = drawable, width = width, height = height)
 
 fun TextView.setDrawableRight(@DrawableRes res: Int, width: Int = 0, height: Int = width) =
     setDrawableRight(drawable(res), width, height)
 
 fun TextView.setDrawableRight(drawable: Drawable?, width: Int = 0, height: Int = width) =
-        setDrawables(right = drawable, width = width, height = height)
+    setDrawables(right = drawable, width = width, height = height)
 
 fun TextView.setDrawableLeft(@DrawableRes res: Int, width: Int = 0, height: Int = width) =
     setDrawableLeft(drawable(res), width, height)
 
 fun TextView.setDrawableLeft(drawable: Drawable?, width: Int = 0, height: Int = width) =
-        setDrawables(drawable, width = width, height = height)
+    setDrawables(drawable, width = width, height = height)
 
 fun TextView.setDrawables(
     left: Drawable? = null,
@@ -65,10 +65,10 @@ fun TextView.setDrawables(
         setDrawablesWithIntrinsicBounds(left, top, right, bottom)
     else
         setCompoundDrawables(
-            left?.apply { setSize(width, height) },
-            top?.apply { setSize(width, height) },
-            right?.apply { setSize(width, height) },
-            bottom?.apply { setSize(width, height) }
+            left?.apply { setSize(width, height) } ?: leftCompoundDrawable,
+            top?.apply { setSize(width, height) } ?: topCompoundDrawable,
+            right?.apply { setSize(width, height) } ?: rightCompoundDrawable,
+            bottom?.apply { setSize(width, height) } ?: bottomCompoundDrawable
         )
 
 fun TextView.setDrawablesWithIntrinsicBounds(
@@ -76,5 +76,21 @@ fun TextView.setDrawablesWithIntrinsicBounds(
     top: Drawable? = null,
     right: Drawable? = null,
     bottom: Drawable? = null
-) =
-    setCompoundDrawablesWithIntrinsicBounds(left, top, right, bottom)
+) = setCompoundDrawablesWithIntrinsicBounds(
+    left ?: leftCompoundDrawable,
+    top ?: topCompoundDrawable,
+    right ?: rightCompoundDrawable,
+    bottom ?: bottomCompoundDrawable
+)
+
+val TextView.leftCompoundDrawable
+    get() = compoundDrawables?.let { if (it.isNotEmpty()) it[0] else null }
+
+val TextView.topCompoundDrawable
+    get() = compoundDrawables?.let { if (it.size >= 2) it[1] else null }
+
+val TextView.rightCompoundDrawable
+    get() = compoundDrawables?.let { if (it.size >= 3) it[2] else null }
+
+val TextView.bottomCompoundDrawable
+    get() = compoundDrawables?.let { if (it.size >= 4) it[3] else null }
