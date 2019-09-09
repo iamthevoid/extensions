@@ -41,8 +41,8 @@ fun <K, V> MutableMap<K,V>.putAll(vararg data : Pair<K, V>, predicate : (V) -> B
 fun <K, V> MutableMap<K,V>.putAllIfNotNull(vararg data : Pair<K, V>, predicate : (V) -> Boolean)=
     putAll(*data) { it != null }
 
-fun <K, V : CharSequence?> MutableMap<K,V>.putAllIfNotNullOrEmpty(vararg data : Pair<K, V>)=
+fun <K, V : CharSequence> MutableMap<K,V>.putAllIfNotNullOrEmpty(vararg data : Pair<K, V>)=
     putAll(*data) { it.isNotNullOrEmpty() }
 
-fun <K, V : CharSequence?> MutableMap<K,V>.putAllIfNotNullOrBlank(vararg data : Pair<K, V>)=
+fun <K, V : CharSequence> MutableMap<K,V>.putAllIfNotNullOrBlank(vararg data : Pair<K, V>)=
     putAll(*data) { it.isNotNullOrBlank() }
