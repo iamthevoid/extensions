@@ -17,7 +17,7 @@ buildscript {
 }
 
 ext {
-    libVersion = '0.5.4'
+    libVersion = '0.5.5'
     libGroupId = "iam.thevoid.extensions"
     libLicence = "Apache-2.0"
     libUploadName = "extensions"
