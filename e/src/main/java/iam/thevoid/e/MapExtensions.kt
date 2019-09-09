@@ -30,19 +30,17 @@ fun <K, V> Map<K, List<V>>.sectionKey(element: V): K? {
     return null
 }
 
-fun <K, V> MutableMap<K,V>.putAll(vararg data : Pair<K, V>, predicate : (V) -> Boolean) {
+fun <K, V> MutableMap<K, V>.putAllIfNotNull(
+    vararg data: Pair<K, V?>,
+    predicate: (V) -> Boolean = { true }
+) {
     for ((key, value) in data) {
-        if (predicate.invoke(value)) {
-            put(key, value)
-        }
+        value?.also { if (predicate.invoke(it)) put(key, it) }
     }
 }
 
-fun <K, V> MutableMap<K,V>.putAllIfNotNull(vararg data : Pair<K, V>, predicate : (V) -> Boolean)=
-    putAll(*data) { it != null }
+fun <K, V : CharSequence> MutableMap<K, V>.putAllIfNotNullOrEmpty(vararg data: Pair<K, V?>) =
+    putAllIfNotNull(*data) { it.isNotEmpty() }
 
-fun <K, V : CharSequence> MutableMap<K,V>.putAllIfNotNullOrEmpty(vararg data : Pair<K, V>)=
-    putAll(*data) { it.isNotNullOrEmpty() }
-
-fun <K, V : CharSequence> MutableMap<K,V>.putAllIfNotNullOrBlank(vararg data : Pair<K, V>)=
-    putAll(*data) { it.isNotNullOrBlank() }
+fun <K, V : CharSequence> MutableMap<K, V>.putAllIfNotNullOrBlank(vararg data: Pair<K, V?>) =
+    putAllIfNotNull(*data) { it.isNotBlank() }
