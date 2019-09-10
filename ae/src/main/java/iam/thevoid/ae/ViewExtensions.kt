@@ -188,7 +188,6 @@ fun View.showKeyboard() {
 }
 
 fun View.resetFocus() {
-    clearFocus()
     isFocusableInTouchMode = false
     isFocusable = false
     isFocusableInTouchMode = true
