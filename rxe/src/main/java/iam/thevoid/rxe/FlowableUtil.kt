@@ -13,6 +13,8 @@ import io.reactivex.functions.Function8
 import io.reactivex.functions.Function9
 import io.reactivex.rxkotlin.zipWith
 
+fun <T> T.toFlowable() = Flowable.just(this)
+
 /**
  * ZIP
  */

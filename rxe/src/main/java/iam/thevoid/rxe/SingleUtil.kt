@@ -2,6 +2,7 @@
 
 package iam.thevoid.rxe
 
+import io.reactivex.Flowable
 import io.reactivex.Single
 import io.reactivex.functions.Function3
 import io.reactivex.functions.Function4
@@ -10,6 +11,9 @@ import io.reactivex.functions.Function6
 import io.reactivex.functions.Function7
 import io.reactivex.functions.Function8
 import io.reactivex.functions.Function9
+
+fun <T> T.toSingle() = Single.just(this)
+
 
 /**
  * ZIP

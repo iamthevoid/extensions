@@ -2,6 +2,7 @@
 
 package iam.thevoid.rxe
 
+import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
 import io.reactivex.functions.Function3
@@ -12,6 +13,9 @@ import io.reactivex.functions.Function7
 import io.reactivex.functions.Function8
 import io.reactivex.functions.Function9
 import io.reactivex.rxkotlin.zipWith
+
+fun <T> T.toObservable() = Observable.just(this)
+
 
 /**
  * ZIP
