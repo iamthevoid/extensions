@@ -38,3 +38,9 @@ fun String.containsAny(vararg containment: String): Boolean = containment.any { 
 fun String.remove(@RegExp pattern: String) = remove(Regex(pattern, RegexOption.IGNORE_CASE))
 
 fun String.remove(regex: Regex) = replace(regex, "")
+
+fun String.firstOrNull(pattern : String) =
+    firstOrNull(Regex(pattern))
+
+fun String.firstOrNull(regex : Regex) =
+    regex.find(this)?.groups?.firstOrNull()?.value
