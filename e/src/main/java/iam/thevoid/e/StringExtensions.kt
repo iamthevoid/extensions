@@ -39,8 +39,8 @@ fun String.remove(@RegExp pattern: String) = remove(Regex(pattern, RegexOption.I
 
 fun String.remove(regex: Regex) = replace(regex, "")
 
-fun String.firstOrNull(pattern : String) =
-    firstOrNull(Regex(pattern))
+fun String.firstOrNull(pattern : String, options : Set<RegexOption> = emptySet()) =
+    firstOrNull(Regex(pattern, options))
 
 fun String.firstOrNull(regex : Regex) =
     regex.find(this)?.groups?.firstOrNull()?.value

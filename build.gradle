@@ -9,7 +9,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.novoda:bintray-release:0.9.1'
-        classpath 'com.android.tools.build:gradle:3.5.1'
+        classpath 'com.android.tools.build:gradle:3.5.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -17,7 +17,7 @@ buildscript {
 }
 
 ext {
-    libVersion = '0.5.13'
+    libVersion = '0.5.14'
     libGroupId = "iam.thevoid.extensions"
     libLicence = "Apache-2.0"
     libUploadName = "extensions"
