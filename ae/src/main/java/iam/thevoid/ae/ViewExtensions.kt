@@ -98,8 +98,11 @@ private fun View?.checkAndSetViewState(state: Int) {
 }
 
 fun View?.show() = checkAndSetViewState(View.VISIBLE)
-fun View?.hide(needHide: Boolean = true) = checkAndSetViewState(if (needHide) View.INVISIBLE else View.VISIBLE)
-fun View?.gone(needGone: Boolean = true) = checkAndSetViewState(if (needGone) View.GONE else View.VISIBLE)
+fun View?.hide(needHide: Boolean = true) =
+    checkAndSetViewState(if (needHide) View.INVISIBLE else View.VISIBLE)
+
+fun View?.gone(needGone: Boolean = true) =
+    checkAndSetViewState(if (needGone) View.GONE else View.VISIBLE)
 
 
 /**
@@ -116,13 +119,27 @@ fun View.setRippleClickForeground() {
     }
 }
 
+@TargetApi(value = Build.VERSION_CODES.M)
+fun View.resetForeground() {
+    if (canUseForeground) {
+        foreground = null
+    }
+}
+
 fun View.setRippleClickBackground() {
     setBackgroundResource(context.selectableItemBackgroundResource)
     setClickable()
 }
 
+fun View.resetBackground() {
+    setBackgroundResource(context.selectableItemBackgroundResource)
+}
+
 fun View.setRippleClickAnimation() =
     if (canUseForeground) setRippleClickForeground() else setRippleClickBackground()
+
+fun View.unsetRippleClickAnimation() =
+    if (canUseForeground) resetForeground() else resetBackground()
 
 // ROUNDED
 
