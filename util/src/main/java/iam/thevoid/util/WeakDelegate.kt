@@ -13,3 +13,5 @@ class WeakDelegate<T> {
 
     operator fun getValue(host: Any, property: KProperty<*>) = reference.get()
 }
+
+fun <T> weak() = WeakDelegate<T>()

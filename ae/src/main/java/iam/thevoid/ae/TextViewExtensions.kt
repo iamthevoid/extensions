@@ -54,10 +54,10 @@ fun TextView.setDrawableLeft(drawable: Drawable?, width: Int = 0, height: Int = 
     setDrawables(drawable, width = width, height = height)
 
 fun TextView.setDrawables(
-    left: Drawable? = null,
-    top: Drawable? = null,
-    right: Drawable? = null,
-    bottom: Drawable? = null,
+    left: Drawable? = leftCompoundDrawable,
+    top: Drawable? = topCompoundDrawable,
+    right: Drawable? = rightCompoundDrawable,
+    bottom: Drawable? = bottomCompoundDrawable,
     width: Int = 0,
     height: Int = 0
 ) =
@@ -65,32 +65,27 @@ fun TextView.setDrawables(
         setDrawablesWithIntrinsicBounds(left, top, right, bottom)
     else
         setCompoundDrawables(
-            left?.apply { setSize(width, height) } ?: leftCompoundDrawable,
-            top?.apply { setSize(width, height) } ?: topCompoundDrawable,
-            right?.apply { setSize(width, height) } ?: rightCompoundDrawable,
-            bottom?.apply { setSize(width, height) } ?: bottomCompoundDrawable
+            left?.apply { setSize(width, height) },
+            top?.apply { setSize(width, height) },
+            right?.apply { setSize(width, height) },
+            bottom?.apply { setSize(width, height) }
         )
 
 fun TextView.setDrawablesWithIntrinsicBounds(
-    left: Drawable? = null,
-    top: Drawable? = null,
-    right: Drawable? = null,
-    bottom: Drawable? = null
-) = setCompoundDrawablesWithIntrinsicBounds(
-    left ?: leftCompoundDrawable,
-    top ?: topCompoundDrawable,
-    right ?: rightCompoundDrawable,
-    bottom ?: bottomCompoundDrawable
-)
+    left: Drawable? = leftCompoundDrawable,
+    top: Drawable? = topCompoundDrawable,
+    right: Drawable? = rightCompoundDrawable,
+    bottom: Drawable? = bottomCompoundDrawable
+) = setCompoundDrawablesWithIntrinsicBounds(left, top, right, bottom)
 
 val TextView.leftCompoundDrawable
-    get() = compoundDrawables?.let { if (it.isNotEmpty()) it[0] else null }
+    get() = compoundDrawables.let { if (it.isNotEmpty()) it[0] else null }
 
 val TextView.topCompoundDrawable
-    get() = compoundDrawables?.let { if (it.size >= 2) it[1] else null }
+    get() = compoundDrawables.let { if (it.size >= 2) it[1] else null }
 
 val TextView.rightCompoundDrawable
-    get() = compoundDrawables?.let { if (it.size >= 3) it[2] else null }
+    get() = compoundDrawables.let { if (it.size >= 3) it[2] else null }
 
 val TextView.bottomCompoundDrawable
-    get() = compoundDrawables?.let { if (it.size >= 4) it[3] else null }
+    get() = compoundDrawables.let { if (it.size >= 4) it[3] else null }
