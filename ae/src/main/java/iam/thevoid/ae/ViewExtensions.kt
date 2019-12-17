@@ -191,17 +191,11 @@ fun View.rootView(): View {
 
 fun View.hideKeyboard() {
     clearFocus()
-    post {
-        (context?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager)
-            ?.hideSoftInputFromWindow(windowToken, 0)
-    }.safe()
+    post { context.asActivity().hideKeyboard() }.safe()
 }
 
 fun View.showKeyboard() {
-    post {
-        (context?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager)
-            ?.showSoftInput(this, 0)
-    }.safe()
+    post { context.asActivity().showKeyboard() }.safe()
 }
 
 fun View.resetFocus() {

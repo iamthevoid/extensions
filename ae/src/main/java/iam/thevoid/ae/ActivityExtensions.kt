@@ -13,19 +13,11 @@ fun Activity.makeSceneTransitionAnimation(view: View, transitionName: String): A
 fun Activity.makeSceneTransitionAnimation(vararg elements: Pair<View, String>): ActivityOptionsCompat =
     ActivityOptionsCompat.makeSceneTransitionAnimation(this, *elements)
 
-fun Activity?.hideKeyboardForced() {
-    this?.currentFocus?.let { currentFocus ->
-        try {
-            (currentFocus.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
-                .hideSoftInputFromWindow(currentFocus.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
-        } catch (e: Exception) {
-        }
-    }
-}
-
 fun Activity?.hideKeyboard() {
-    (this?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager)
-        .toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
+    this?.apply {
+        (getSystemService(Activity.INPUT_METHOD_SERVICE) as? InputMethodManager)
+            ?.hideSoftInputFromWindow(window.decorView.windowToken, InputMethodManager.HIDE_IMPLICIT_ONLY)
+    }
 }
 
 fun Activity?.showKeyboard() {
