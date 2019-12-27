@@ -13,12 +13,14 @@ import android.os.Build
 import android.util.DisplayMetrics
 import android.util.TypedValue
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import iam.thevoid.e.safe
+import java.util.*
 
 /**
  * ACTIVITY
@@ -103,6 +105,9 @@ val Context?.statusBarHeight: Int
     get() = if (this == null) 0 else resources.getIdentifier("status_bar_height", "dimen", "android")
         .let { id -> if (id > 0) dimen(id) else 0 }
 
+val Context.actionBarHeight
+    get() = dimen<Int>(actionBarSizeResourse)
+
 @JvmOverloads
 fun Context?.getNavigationBarHeight(orientation: Int = Configuration.ORIENTATION_PORTRAIT): Int =
     if (this == null) 0 else (if (orientation == Configuration.ORIENTATION_PORTRAIT) "navigation_bar_height" else "navigation_bar_height_landscape").let { name ->
@@ -168,7 +173,6 @@ val Context.actionBarItemBackgroundResource: Int
 fun Context.getResourceIdAttribute(@AttrRes attribute: Int): Int {
     val typedValue = TypedValue()
     theme.resolveAttribute(attribute, typedValue, true)
-    theme.resolveAttribute(attribute, typedValue, true)
     return typedValue.resourceId
 }
 
@@ -182,3 +186,21 @@ val Context.inflater
 
 fun Context.inflate(@LayoutRes layoutRes: Int, container: ViewGroup? = null, attachToRoot: Boolean = false) =
     inflater.inflate(layoutRes, container, attachToRoot)
+
+fun Context.colorString(@ColorRes res: Int) =
+    color(res).toUInt().toString(16).let {
+        if (it.length == 8) it else buildString {
+            for (i in 1..(8 - it.length)) {
+                append("0")
+            }
+            append(it)
+        }
+    }.let { "#$it" }
+
+val Context.currentLocale: Locale
+    get() = resources.configuration.run {
+        when {
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.N -> locales.get(0)
+            else -> locale
+        }
+    }

@@ -22,3 +22,7 @@ fun <First, Second> Observable<First>.zipWith(second: Observable<Second>): Obser
     zipWith(second) { t1, t2 -> Pair(t1, t2) }
 
 fun <T, R> Observable<T>.mapSelf(mapper : T.() -> R) = map { it.mapper() }
+
+fun <T> Observable<T>?.safe(factory: (() -> T)? = null) = this
+    ?: factory?.let { Observable.just(it()) }
+    ?: Observable.empty()

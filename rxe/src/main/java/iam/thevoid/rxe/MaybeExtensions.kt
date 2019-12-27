@@ -9,5 +9,8 @@ fun <T> Maybe<T>.toFlowableDrop() = toObservable().toFlowableDrop()
 fun <T> Maybe<T>.toFlowableError() = toObservable().toFlowableError()
 fun <T> Maybe<T>.toFlowableMissing() = toObservable().toFlowableMissing()
 
+fun <T> Maybe<T>?.safe(factory: (() -> T)? = null) = this
+    ?: factory?.let { Maybe.just(it()) }
+    ?: Maybe.empty()
 
 fun <T, R> Maybe<T>.mapSelf(mapper : T.() -> R) = map { it.mapper() }

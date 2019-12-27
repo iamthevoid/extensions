@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.*
 import androidx.core.view.ViewCompat
+import androidx.fragment.app.Fragment
 import iam.thevoid.e.safe
 
 /**
@@ -233,9 +234,15 @@ fun View.quantityString(@PluralsRes res: Int, quantity: Int, vararg args: Any?) 
 
 fun View.quantityString(@PluralsRes res: Int, quantity: Int) = context.quantityString(res, quantity)
 
+fun View.colorString(@ColorRes res: Int) = context?.colorString(res)
+
+
 /**
  * WINDOW
  */
+
+val View.actionBarHeight
+    get() = dimen<Int>(context.actionBarSizeResourse)
 
 val View.statusBarHeight: Int
     get() = context.statusBarHeight

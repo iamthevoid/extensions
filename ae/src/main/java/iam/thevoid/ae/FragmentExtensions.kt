@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.*
 import androidx.fragment.app.Fragment
+import iam.thevoid.e.safe
 
 /**
  * KEYBOARD
@@ -46,6 +47,10 @@ fun Fragment.quantityString(@PluralsRes res: Int, quantity: Int) = activity.quan
  * WINDOW
  */
 
+
+val Fragment.actionBarHeight
+    get() = context?.let { dimen<Int>(it.actionBarSizeResourse) }.safe()
+
 val Fragment.statusBarHeight: Int
     get() = activity.statusBarHeight
 
@@ -67,6 +72,9 @@ val Fragment.screenHeightDp
 
 val Fragment.dp: Float
     get() = activity.dp
+
+fun Fragment.colorString(@ColorRes res: Int) =
+    context?.colorString(res) ?: activity?.colorString(res) ?: view?.colorString(res) ?: "#00000000"
 
 /**
  * INFLATER

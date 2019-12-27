@@ -44,3 +44,5 @@ fun String.firstOrNull(pattern : String, options : Set<RegexOption> = emptySet()
 
 fun String.firstOrNull(regex : Regex) =
     regex.find(this)?.groups?.firstOrNull()?.value
+
+fun String.first(length: Int) = if (this.length <= length) this else substring(0 until length)

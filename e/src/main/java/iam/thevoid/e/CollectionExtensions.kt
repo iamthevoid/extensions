@@ -105,3 +105,20 @@ fun <E> List<E>.prevBefore(element: E): E? =
         0 -> null
         else -> this[index - 1]
     }
+
+/**
+ * Returns the first element, or `null` if the list is empty.
+ */
+fun <T> Iterable<T>.skip(n: Int): List<T> {
+    require(n >= 0) { "Requested skip count $n is less than zero." }
+    if (n == 0) return this.toList()
+    if (this is Collection<T>) {
+        if (n >= size) return emptyList()
+    }
+    val list = ArrayList<T>()
+    for ((index, item) in this.withIndex()) {
+        if (index < n) continue
+        list.add(item)
+    }
+    return list
+}

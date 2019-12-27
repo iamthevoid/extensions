@@ -14,3 +14,7 @@ fun <First, Second> Flowable<First>.zipWith(second: Flowable<Second>): Flowable<
     zipWith(second) { t1, t2 -> Pair(t1, t2) }
 
 fun <T, R> Flowable<T>.mapSelf(mapper : T.() -> R) = map { it.mapper() }
+
+fun <T> Flowable<T>?.safe(factory: (() -> T)? = null) = this
+    ?: factory?.let { Flowable.just(it()) }
+    ?: Flowable.empty()
