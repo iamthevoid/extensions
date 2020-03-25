@@ -83,5 +83,6 @@ fun Fragment.colorString(@ColorRes res: Int) =
 val Fragment.inflater
     get() = activity?.inflater
 
+@JvmOverloads
 fun Fragment.inflate(@LayoutRes res: Int, root: ViewGroup? = null, attachToRoot: Boolean = false) =
     activity?.inflate(res, root, attachToRoot)

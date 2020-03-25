@@ -290,5 +290,6 @@ inline fun <reified V : View> V.onFirstAttachToWindow(crossinline whenAttached: 
 val View.inflater
     get() = context.inflater
 
+@JvmOverloads
 fun View.inflate(@LayoutRes res: Int, root: ViewGroup? = null, attachToRoot: Boolean = false) =
     context.inflate(res, root, attachToRoot)

@@ -184,6 +184,7 @@ fun Context.getResourceIdAttribute(@AttrRes attribute: Int): Int {
 val Context.inflater
     get() = LayoutInflater.from(this)
 
+@JvmOverloads
 fun Context.inflate(@LayoutRes layoutRes: Int, container: ViewGroup? = null, attachToRoot: Boolean = false) =
     inflater.inflate(layoutRes, container, attachToRoot)
 
