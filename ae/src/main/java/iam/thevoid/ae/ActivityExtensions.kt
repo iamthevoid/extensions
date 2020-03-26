@@ -14,16 +14,18 @@ fun Activity.makeSceneTransitionAnimation(view: View, transitionName: String): A
 fun Activity.makeSceneTransitionAnimation(vararg elements: Pair<View, String>): ActivityOptionsCompat =
     ActivityOptionsCompat.makeSceneTransitionAnimation(this, *elements)
 
-fun Activity?.hideKeyboard() {
+@JvmOverloads
+fun Activity?.hideKeyboard(flag : Int = InputMethodManager.HIDE_IMPLICIT_ONLY) {
     this?.apply {
         (getSystemService(Activity.INPUT_METHOD_SERVICE) as? InputMethodManager)
-            ?.hideSoftInputFromWindow(window.decorView.windowToken, InputMethodManager.HIDE_IMPLICIT_ONLY)
+            ?.hideSoftInputFromWindow(window.decorView.windowToken, flag)
     }
 }
 
-fun Activity?.showKeyboard() {
+@JvmOverloads
+fun Activity?.showKeyboard(showFlag : Int = InputMethodManager.SHOW_FORCED, hideFlag : Int = 0) {
     (this?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager)
-        .toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+        .toggleSoftInput(showFlag, hideFlag)
 }
 
 val Activity.view : View

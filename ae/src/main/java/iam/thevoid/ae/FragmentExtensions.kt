@@ -14,9 +14,9 @@ import iam.thevoid.e.safe
  * KEYBOARD
  */
 
-fun Fragment?.hideKeyboard() { this?.activity?.hideKeyboard() }
+fun Fragment?.hideKeyboard(flag : Int = InputMethodManager.HIDE_IMPLICIT_ONLY) { this?.activity?.hideKeyboard() }
 
-fun Fragment?.showKeyboard() { this?.activity?.showKeyboard() }
+fun Fragment?.showKeyboard(showFlag : Int = InputMethodManager.SHOW_FORCED, hideFlag : Int = 0) { this?.activity?.showKeyboard(showFlag, hideFlag) }
 
 /**
  * RESOURSES
