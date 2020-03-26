@@ -14,8 +14,10 @@ import iam.thevoid.e.safe
  * KEYBOARD
  */
 
+@JvmOverloads
 fun Fragment?.hideKeyboard(flag : Int = InputMethodManager.HIDE_IMPLICIT_ONLY) { this?.activity?.hideKeyboard() }
 
+@JvmOverloads
 fun Fragment?.showKeyboard(showFlag : Int = InputMethodManager.SHOW_FORCED, hideFlag : Int = 0) { this?.activity?.showKeyboard(showFlag, hideFlag) }
 
 /**
