@@ -2,9 +2,8 @@ package iam.thevoid.aetest
 
 import android.app.Activity
 import android.os.Bundle
-import iam.thevoid.ae.hideKeyboard
-import iam.thevoid.ae.showKeyboard
-import iam.thevoid.ae.string
+import android.view.View
+import iam.thevoid.ae.*
 import iam.thevoid.util.weak
 
 class MainActivity : Activity() {
@@ -16,6 +15,7 @@ class MainActivity : Activity() {
         hideKeyboard()
         showKeyboard()
         string(R.string.app_name)
+        View(this).dimen<Int>(android.R.dimen.app_icon_size)
         weakRef = this
     }
 }

@@ -5,6 +5,10 @@ import android.graphics.drawable.Drawable
 import android.widget.TextView
 import androidx.annotation.DrawableRes
 
+fun TextView.measureTextWidth() = Paint().also {
+    it.textSize = textSize
+}.measureText(text.toString())
+
 fun TextView.setTextStrikeThru(strikeThru: Boolean) {
     if (strikeThru) setTextStrikeThru() else setTextNotStrikeThru()
 }

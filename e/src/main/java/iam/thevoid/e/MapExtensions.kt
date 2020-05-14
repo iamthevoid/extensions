@@ -35,9 +35,23 @@ fun <K, V> MutableMap<K, V>.putAllIfNotNull(
     predicate: (V) -> Boolean = { true }
 ) {
     for ((key, value) in data) {
-        value?.also { if (predicate.invoke(it)) put(key, it) }
+        value?.also { if (predicate.invoke(it)) putIfNotNull(key, value) }
     }
 }
+
+fun <K, V> MutableMap<K, V>.putIfNotNull(value: Pair<K, V?>): V? = putIfNotNull(value.first, value.second)
+
+fun <K, V> MutableMap<K, V>.putIfNotNull(key: K, value: V?): V? = if (value != null) put(key, value) else get(key)
+
+fun <K, V> MutableMap<K, V>.putAllIfNotNull(map: Map<K, V>?) = map?.let { putAll(it) } ?: Unit
+
+fun <K, V> MutableMap<K, V>.putIfNotContains(value: Pair<K, V>): V? = putIfNotContains(value.first, value.second)
+
+fun <K, V> MutableMap<K, V>.putIfNotContains(key: K, value: V): V? = if (containsKey(key)) get(key) else put(key, value)
+
+fun <K, V> MutableMap<K, V>.put(value: Pair<K, V>): V? = put(value.first, value.second)
+
+fun <K, V> MutableMap<K, V>.putAll(vararg values: Pair<K, V>) = putAll(values.asSequence())
 
 fun <K, V : CharSequence> MutableMap<K, V>.putAllIfNotNullOrEmpty(vararg data: Pair<K, V?>) =
     putAllIfNotNull(*data) { it.isNotEmpty() }

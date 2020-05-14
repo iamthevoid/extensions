@@ -1,16 +1,17 @@
+@file:Suppress("unused", "SpellCheckingInspection")
+
 package iam.thevoid.ae
 
 import android.annotation.TargetApi
-import android.content.Context
 import android.content.res.Configuration
 import android.graphics.drawable.Drawable
 import android.os.Build
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.*
 import androidx.core.view.ViewCompat
-import androidx.fragment.app.Fragment
 import iam.thevoid.e.safe
 
 /**
@@ -190,13 +191,13 @@ fun View.rootView(): View {
  * KEYBOARD & FOCUS
  */
 
-fun View.hideKeyboard() {
+fun View.hideKeyboard(flag : Int = InputMethodManager.HIDE_IMPLICIT_ONLY) {
     clearFocus()
-    post { context.asActivity().hideKeyboard() }.safe()
+    post { context.asActivity().hideKeyboard(flag) }.safe()
 }
 
-fun View.showKeyboard() {
-    post { context.asActivity().showKeyboard() }.safe()
+fun View.showKeyboard(showFlag : Int = InputMethodManager.SHOW_FORCED, hideFlag : Int = 0) {
+    post { context.asActivity().showKeyboard(showFlag, hideFlag) }.safe()
 }
 
 fun View.resetFocus() {
@@ -221,7 +222,11 @@ fun View.integer(@IntegerRes res: Int): Int = context.integer(res)
 
 inline fun <reified T : Number> View.dimen(@DimenRes res: Int): T = context.dimen(res)
 
-@Deprecated("Use \"dimen(@DimenRes res: Int)\" instead", level = DeprecationLevel.WARNING)
+@Deprecated(
+    "Use \"dimen(@DimenRes res: Int)\" instead",
+    level = DeprecationLevel.WARNING,
+    replaceWith = ReplaceWith("dimen<Int>(res)", "iam.thevoid.ae")
+)
 fun View.dimenPxSize(@DimenRes res: Int): Int = context.dimen(res)
 
 fun View.drawable(@DrawableRes res: Int): Drawable? = context.drawable(res)
@@ -229,10 +234,11 @@ fun View.drawable(@DrawableRes res: Int): Drawable? = context.drawable(res)
 fun View.coloredDrawable(@DrawableRes res: Int, @ColorRes colorRes: Int): Drawable? =
     context.coloredDrawable(res, colorRes)
 
-fun View.quantityString(@PluralsRes res: Int, quantity: Int, vararg args: Any?) =
+fun View.quantityString(@PluralsRes res: Int, quantity: Int, vararg args: Any?) : String =
     context.quantityString(res, quantity, *args)
 
-fun View.quantityString(@PluralsRes res: Int, quantity: Int) = context.quantityString(res, quantity)
+fun View.quantityString(@PluralsRes res: Int, quantity: Int) : String =
+    context.quantityString(res, quantity)
 
 fun View.colorString(@ColorRes res: Int) = context?.colorString(res)
 
@@ -287,9 +293,9 @@ inline fun <reified V : View> V.onFirstAttachToWindow(crossinline whenAttached: 
  * INFLATER
  */
 
-val View.inflater
+val View.inflater : LayoutInflater
     get() = context.inflater
 
 @JvmOverloads
-fun View.inflate(@LayoutRes res: Int, root: ViewGroup? = null, attachToRoot: Boolean = false) =
+fun View.inflate(@LayoutRes res: Int, root: ViewGroup? = null, attachToRoot: Boolean = false) : View =
     context.inflate(res, root, attachToRoot)

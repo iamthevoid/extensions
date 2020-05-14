@@ -205,3 +205,10 @@ val Context.currentLocale: Locale
             else -> locale
         }
     }
+
+fun Context.isFirstInstall(): Boolean = try {
+    packageManager.getPackageInfo(packageName, 0).run { firstInstallTime == lastUpdateTime }
+} catch (e: PackageManager.NameNotFoundException) {
+    e.printStackTrace()
+    true
+}
