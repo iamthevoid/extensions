@@ -5,12 +5,12 @@ apply plugin: 'kotlin-android'
 apply plugin: 'com.novoda.bintray-release'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion compileSdk
 
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion minSdk
         versionCode 1
-        versionName "1.0"
+        versionName libVersion
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
@@ -34,6 +34,9 @@ publish {
     uploadName = "$libUploadName"
     userOrg = "$libUserOrg"
     website = "$libWebSite"
+    dryRun = libDryRun
+    bintrayUser = libBintrayUser
+    bintrayKey = libBintrayKey
 }
 
 dependencies {
@@ -43,8 +46,5 @@ dependencies {
 
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation "androidx.appcompat:appcompat:$appcompat"
 }

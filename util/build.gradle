@@ -16,6 +16,9 @@ publish {
     uploadName = "$libUploadName"
     userOrg = "$libUserOrg"
     website = "$libWebSite"
+    dryRun = libDryRun
+    bintrayUser = libBintrayUser
+    bintrayKey = libBintrayKey
 }
 
 sourceCompatibility = "7"

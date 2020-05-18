@@ -1,1 +1,1 @@
-<a href="https://bintray.com/beta/#/iamthevoid/maven/extensions"><img src="https://github.com/iamthevoid/extensions/blob/master/extensions.svg"></a>
+[<img src="lib.svg">](https://bintray.com/beta/#/iamthevoid/maven/extensions)

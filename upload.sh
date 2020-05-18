@@ -1,0 +1,1 @@
+./gradlew generateVersionSVG clean build bintrayUpload
