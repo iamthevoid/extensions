@@ -1,1 +1,2 @@
+include ':coroutines'
 include ':app', ':ae', ':e', ':rxe', ':util'

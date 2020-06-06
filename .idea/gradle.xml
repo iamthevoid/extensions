@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/ae" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/coroutines" />
             <option value="$PROJECT_DIR$/e" />
             <option value="$PROJECT_DIR$/rxe" />
             <option value="$PROJECT_DIR$/util" />
