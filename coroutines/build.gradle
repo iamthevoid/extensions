@@ -6,7 +6,7 @@ apply plugin: 'com.novoda.bintray-release'
 publish {
     artifactId = 'coroutines'
     desc = 'Extensions for kotlin coroutines'
-    groupId = "$libGroupId"
+    groupId = "iam.thevoid.util"
     licences = ["$libLicence"]
     publishVersion = "$libVersion"
     uploadName = "$libUploadName"
