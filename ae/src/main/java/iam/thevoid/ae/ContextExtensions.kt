@@ -13,7 +13,6 @@ import android.os.Build
 import android.util.DisplayMetrics
 import android.util.TypedValue
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.*
 import androidx.appcompat.app.AppCompatActivity
@@ -53,27 +52,32 @@ fun Context.asAppCompatActivity(): AppCompatActivity = when (this) {
     else -> throw IllegalStateException("Context $this NOT contains activity!")
 }
 
-fun Context.needPermissionsFor(action : () -> Unit) = try {
+fun Context.needPermissionsFor(action: () -> Unit) = try {
     action.invoke()
     false
-} catch (e : SecurityException) {
+} catch (e: SecurityException) {
     true
 }
 
-fun Context.permissionGranted(permission: String) =
-    packageManager.checkPermission(permission, packageName) == PackageManager.PERMISSION_GRANTED
+fun Context.permissionsGranted(vararg permissions: String): Boolean {
 
-fun Context.permissionsGranted(permission: String, vararg permissions: String): Boolean {
-    var granted = permissionGranted(permission)
+    if (permissions.isEmpty())
+        return true
 
-    if (permissions.isNotEmpty()) {
-        for (p in permissions) {
-            granted = granted && permissionGranted(p)
-        }
+    var granted = true
+
+    for (p in permissions) {
+        granted = granted && permissionGranted(p)
+
+        if (!granted)
+            break
     }
 
     return granted
 }
+
+private fun Context.permissionGranted(permission: String) =
+    packageManager.checkPermission(permission, packageName) == PackageManager.PERMISSION_GRANTED
 
 /**
  * SERVICE
@@ -106,14 +110,22 @@ val Context?.screenHeightDp
     get() = this?.asActivity()?.let { screenHeight / dp }
 
 val Context?.dp: Float
-    get() = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1f, this?.asActivity()?.resources?.displayMetrics)
+    get() = TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP,
+        1f,
+        this?.asActivity()?.resources?.displayMetrics
+    )
 
 val Context?.statusBarHeight: Int
-    get() = if (this == null) 0 else resources.getIdentifier("status_bar_height", "dimen", "android")
+    get() = if (this == null) 0 else resources.getIdentifier(
+        "status_bar_height",
+        "dimen",
+        "android"
+    )
         .let { id -> if (id > 0) dimen(id) else 0 }
 
 val Context.actionBarHeight
-    get() = dimen<Int>(actionBarSizeResourse)
+    get() = dimen<Int>(actionBarSizeResource)
 
 @JvmOverloads
 fun Context?.getNavigationBarHeight(orientation: Int = Configuration.ORIENTATION_PORTRAIT): Int =
@@ -150,13 +162,22 @@ fun Context?.drawable(@DrawableRes res: Int): Drawable? =
         else -> resources.getDrawable(res)
     }
 
-fun Context?.coloredDrawable(@DrawableRes drawableResId: Int, @ColorRes filterColorResourceId: Int): Drawable? =
-    drawable(drawableResId).apply { this?.setColorFilter(color(filterColorResourceId), PorterDuff.Mode.SRC_ATOP) }
+fun Context?.coloredDrawable(
+    @DrawableRes drawableResId: Int,
+    @ColorRes filterColorResourceId: Int
+): Drawable? =
+    drawable(drawableResId).apply {
+        this?.setColorFilter(
+            color(filterColorResourceId),
+            PorterDuff.Mode.SRC_ATOP
+        )
+    }
 
 fun Context?.quantityString(@PluralsRes res: Int, quantity: Int, vararg args: Any?) =
     if (this == null) "" else resources.getQuantityString(res, quantity, *args)
 
-fun Context?.quantityString(@PluralsRes res: Int, quantity: Int) = quantityString(res, quantity, quantity)
+fun Context?.quantityString(@PluralsRes res: Int, quantity: Int) =
+    quantityString(res, quantity, quantity)
 
 fun Context.uriFromResource(@DrawableRes resId: Int): String = Uri.Builder()
     .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
@@ -165,17 +186,14 @@ fun Context.uriFromResource(@DrawableRes resId: Int): String = Uri.Builder()
     .appendPath(resources.getResourceEntryName(resId))
     .build().toString()
 
-val Context.actionBarSizeResourse: Int
-    get() =
-        getResourceIdAttribute(android.R.attr.actionBarSize)
+val Context.actionBarSizeResource: Int
+    get() = getResourceIdAttribute(android.R.attr.actionBarSize)
 
 val Context.selectableItemBackgroundResource: Int
-    get() =
-        getResourceIdAttribute(android.R.attr.selectableItemBackground)
+    get() = getResourceIdAttribute(android.R.attr.selectableItemBackground)
 
 val Context.actionBarItemBackgroundResource: Int
-    get() =
-        getResourceIdAttribute(android.R.attr.actionBarItemBackground)
+    get() = getResourceIdAttribute(android.R.attr.actionBarItemBackground)
 
 fun Context.getResourceIdAttribute(@AttrRes attribute: Int): Int {
     val typedValue = TypedValue()
@@ -192,8 +210,11 @@ val Context.inflater
     get() = LayoutInflater.from(this)
 
 @JvmOverloads
-fun Context.inflate(@LayoutRes layoutRes: Int, container: ViewGroup? = null, attachToRoot: Boolean = false) =
-    inflater.inflate(layoutRes, container, attachToRoot)
+fun Context.inflate(
+    @LayoutRes layoutRes: Int,
+    container: ViewGroup? = null,
+    attachToRoot: Boolean = false
+) = inflater.inflate(layoutRes, container, attachToRoot)
 
 fun Context.colorString(@ColorRes res: Int) =
     color(res).toUInt().toString(16).let {

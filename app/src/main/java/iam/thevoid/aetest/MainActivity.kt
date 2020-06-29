@@ -13,7 +13,7 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         hideKeyboard()
-        showKeyboard()
+        toggleKeyboard()
         string(R.string.app_name)
         View(this).dimen<Int>(android.R.dimen.app_icon_size)
         weakRef = this

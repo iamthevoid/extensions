@@ -100,6 +100,7 @@ private fun View?.checkAndSetViewState(state: Int) {
 }
 
 fun View?.show() = checkAndSetViewState(View.VISIBLE)
+
 fun View?.hide(needHide: Boolean = true) =
     checkAndSetViewState(if (needHide) View.INVISIBLE else View.VISIBLE)
 
@@ -169,6 +170,7 @@ fun View.setRoundRippleClickAnimation() = setRoundRippleClickBackground()
 private val canUseForeground
     get() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
 
+@Deprecated("Will be private in next versions")
 fun View.setClickable() {
     isClickable = true
     isFocusable = true
@@ -197,7 +199,7 @@ fun View.hideKeyboard(flag : Int = InputMethodManager.HIDE_IMPLICIT_ONLY) {
 }
 
 fun View.showKeyboard(showFlag : Int = InputMethodManager.SHOW_FORCED, hideFlag : Int = 0) {
-    post { context.asActivity().showKeyboard(showFlag, hideFlag) }.safe()
+    post { context.asActivity().toggleKeyboard(showFlag, hideFlag) }.safe()
 }
 
 fun View.resetFocus() {
@@ -248,7 +250,7 @@ fun View.colorString(@ColorRes res: Int) = context?.colorString(res)
  */
 
 val View.actionBarHeight
-    get() = dimen<Int>(context.actionBarSizeResourse)
+    get() = dimen<Int>(context.actionBarSizeResource)
 
 val View.statusBarHeight: Int
     get() = context.statusBarHeight

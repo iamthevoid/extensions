@@ -23,7 +23,7 @@ fun Activity?.hideKeyboard(flag : Int = InputMethodManager.HIDE_IMPLICIT_ONLY) {
 }
 
 @JvmOverloads
-fun Activity?.showKeyboard(showFlag : Int = InputMethodManager.SHOW_FORCED, hideFlag : Int = 0) {
+fun Activity?.toggleKeyboard(showFlag : Int = InputMethodManager.SHOW_FORCED, hideFlag : Int = 0) {
     (this?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager)
         .toggleSoftInput(showFlag, hideFlag)
 }

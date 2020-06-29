@@ -6,26 +6,27 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 
-inline fun <reified T : View> ViewGroup.findView(): T? {
+inline fun <reified T : View> ViewGroup.findView(): List<T> {
+    val list = mutableListOf<T>()
     for (i in 0 until childCount) {
         val view = getChildAt(i)
         if (view is T) {
-            return view
+            list.add(view)
         }
     }
 
-    return null
+    return list
 }
 
 @set:RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
 var ViewGroup.animateLayoutChanges: Boolean
     set(value) {
-        if (value) {
-            layoutTransition = LayoutTransition().apply {
+        layoutTransition = if (value) {
+            LayoutTransition().apply {
                 disableTransitionType(LayoutTransition.DISAPPEARING)
             }
         } else {
-            layoutTransition = null
+            null
         }
     }
     get() = layoutTransition != null

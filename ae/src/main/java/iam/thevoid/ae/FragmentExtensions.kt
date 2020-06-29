@@ -1,9 +1,7 @@
 package iam.thevoid.ae
 
-import android.app.Activity
 import android.content.res.Configuration
 import android.graphics.drawable.Drawable
-import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.*
@@ -18,7 +16,7 @@ import iam.thevoid.e.safe
 fun Fragment?.hideKeyboard(flag : Int = InputMethodManager.HIDE_IMPLICIT_ONLY) { this?.activity?.hideKeyboard(flag) }
 
 @JvmOverloads
-fun Fragment?.showKeyboard(showFlag : Int = InputMethodManager.SHOW_FORCED, hideFlag : Int = 0) { this?.activity?.showKeyboard(showFlag, hideFlag) }
+fun Fragment?.showKeyboard(showFlag : Int = InputMethodManager.SHOW_FORCED, hideFlag : Int = 0) { this?.activity?.toggleKeyboard(showFlag, hideFlag) }
 
 /**
  * RESOURSES
@@ -51,7 +49,7 @@ fun Fragment.quantityString(@PluralsRes res: Int, quantity: Int) = activity.quan
 
 
 val Fragment.actionBarHeight
-    get() = context?.let { dimen<Int>(it.actionBarSizeResourse) }.safe()
+    get() = context?.let { dimen<Int>(it.actionBarSizeResource) }.safe()
 
 val Fragment.statusBarHeight: Int
     get() = activity.statusBarHeight
