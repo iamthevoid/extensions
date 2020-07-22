@@ -6,6 +6,9 @@ import org.junit.Test
 class DoubleTest {
     @Test
     fun formatDoubleTest() {
+
+        Assert.assertEquals("664", 663.993f.format(precision = 1))
+
         Assert.assertEquals("1.1", 1.12234.format(precision = 1))
         Assert.assertEquals("1.12234", 1.12234.format())
         Assert.assertEquals("1.1", 1.10034.format(precision = 3))

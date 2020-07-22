@@ -6,15 +6,31 @@ package iam.thevoid.e
  * @param endingZeroes If false then ending zeroes will be removed else leaved
  */
 fun Double.format(precision: Int? = null, endingZeroes: Boolean = false): String =
-    if (toLong().toDouble() == this) {
+    if (hasNoFractionalPart()) {
         if (precision != null && endingZeroes) {
             "%.${precision}f".format(this)
         } else {
-            toLong().toString()
+            integerPart.toString()
         }
     } else {
         precision
             ?.let { ("%." + (if (it < 0) 0 else it) + "f").format(this) }
-            ?.let { if (endingZeroes) it else it.toFloat().toString() }
+            ?.let { formatted ->
+                formatted.takeIf { endingZeroes }
+                    ?: formatted.toDoubleOrNull()?.run {
+                        when {
+                            hasNoFractionalPart() -> integerPart.toString()
+                            else -> toString()
+                        }
+                    }
+            }
             ?: toString()
     }
+
+private fun Double.hasNoFractionalPart(): Boolean = toLong().toDouble() == this
+
+private val Double.integerPart: Long
+    get() = toLong()
+
+private val Double.fractionalPart: Double
+    get() = this - integerPart
