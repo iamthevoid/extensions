@@ -14,7 +14,10 @@ fun Double.format(precision: Int? = null, endingZeroes: Boolean = false): String
         }
     } else {
         precision
-            ?.let { ("%." + (if (it < 0) 0 else it) + "f").format(this) }
+            ?.let { ("%." + (if (it < 0) 0 else it) + "f") }
+            ?.format(this)
+            ?.replace(",", ".")
+            ?.trim()
             ?.let { formatted ->
                 formatted.takeIf { endingZeroes }
                     ?: formatted.toDoubleOrNull()?.run {
