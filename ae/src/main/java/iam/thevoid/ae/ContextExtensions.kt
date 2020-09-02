@@ -38,13 +38,6 @@ fun Context.asFragmentActivity(): FragmentActivity = when (this) {
     else -> throw IllegalStateException("Context $this NOT contains activity!")
 }
 
-fun Context.asAppcompatActivity(): AppCompatActivity = when (this) {
-    is AppCompatActivity -> this
-    is Activity -> throw IllegalStateException("Context $this NOT support-v4 Activity")
-    is ContextWrapper -> baseContext.asAppcompatActivity()
-    else -> throw IllegalStateException("Context $this NOT contains activity!")
-}
-
 fun Context.asAppCompatActivity(): AppCompatActivity = when (this) {
     is AppCompatActivity -> this
     is Activity -> throw IllegalStateException("Context $this NOT support-v4 Activity")
