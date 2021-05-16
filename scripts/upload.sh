@@ -1,0 +1,6 @@
+./gradlew generateVersionSVG clean assemble\
+ e:publishReleasePublicationToSonatypeRepository\
+ ae:publishReleasePublicationToSonatypeRepository\
+ rxe:publishReleasePublicationToSonatypeRepository\
+ util:publishReleasePublicationToSonatypeRepository\
+ coroutines:publishReleasePublicationToSonatypeRepository

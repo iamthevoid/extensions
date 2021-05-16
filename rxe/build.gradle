@@ -1,27 +1,21 @@
 apply plugin: 'kotlin'
 
-apply plugin: 'com.novoda.bintray-release'
-
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "io.reactivex.rxjava2:rxjava:2.2.10"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${deps.api.kotlin}"
+    implementation "io.reactivex.rxjava2:rxjava:2.2.19"
     implementation 'io.reactivex.rxjava2:rxkotlin:2.4.0'
 }
 
-publish {
-    artifactId = 'rx'
-    desc = 'extension for rx java'
-    groupId = "$libGroupId"
-    licences = ["$libLicence"]
-    publishVersion = "$libVersion"
-    uploadName = "$libUploadName"
-    userOrg = "$libUserOrg"
-    website = "$libWebSite"
-    dryRun = libDryRun
-    bintrayUser = libBintrayUser
-    bintrayKey = libBintrayKey
+sourceSets {
+    main.java.srcDirs += 'src/main/java'
 }
 
+ext {
+    deps.lib.artifactId = 'rx'
+    deps.lib.desc = 'extension for rx java'
+}
+
+apply from: "${rootProject.projectDir}/gradle/publish-mavencentral.gradle"
 
 sourceCompatibility = "7"
 targetCompatibility = "7"

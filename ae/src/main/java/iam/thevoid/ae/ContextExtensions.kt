@@ -143,7 +143,7 @@ inline fun <reified T : Number> Context?.dimen(@DimenRes res: Int): T =
             Int::class -> dimen.toInt() as T
             Double::class -> dimen.toDouble() as T
             Long::class -> dimen.toLong() as T
-            Short::class -> dimen.toShort() as T
+            Short::class -> dimen.toInt().toShort() as T
             else -> throw IllegalArgumentException("Unknown dimen type")
         }
     }

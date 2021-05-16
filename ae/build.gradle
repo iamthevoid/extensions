@@ -2,15 +2,13 @@ apply plugin: 'com.android.library'
 
 apply plugin: 'kotlin-android'
 
-apply plugin: 'com.novoda.bintray-release'
-
 android {
-    compileSdkVersion compileSdk
+    compileSdkVersion deps.android.compileSdk
 
     defaultConfig {
-        minSdkVersion minSdk
+        minSdk = deps.android.minSdk
         versionCode 1
-        versionName libVersion
+        versionName deps.lib.version
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
@@ -25,26 +23,19 @@ android {
 
 }
 
-publish {
-    artifactId = 'android'
-    desc = 'extension for android'
-    groupId = "$libGroupId"
-    licences = ["$libLicence"]
-    publishVersion = "$libVersion"
-    uploadName = "$libUploadName"
-    userOrg = "$libUserOrg"
-    website = "$libWebSite"
-    dryRun = libDryRun
-    bintrayUser = libBintrayUser
-    bintrayKey = libBintrayKey
+ext {
+    deps.lib.artifactId = 'android'
+    deps.lib.desc = 'extension for android'
 }
+
+apply from: "${rootProject.projectDir}/gradle/publish-mavencentral.gradle"
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(':e')
 
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:${deps.api.kotlin}"
 
-    implementation "androidx.appcompat:appcompat:$appcompat"
+    implementation "androidx.appcompat:appcompat:${deps.libs.appcompat}"
 }

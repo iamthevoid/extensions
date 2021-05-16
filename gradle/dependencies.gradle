@@ -1,0 +1,32 @@
+ext.deps = [:]
+deps = [:]
+
+def api = [:]
+api.kotlin = "1.5.0"
+api.dokka = "1.4.32"
+deps.api = api
+
+def lib = [:]
+lib.version = '0.6.6'
+lib.groupId = "io.github.iamthevoid.extensions"
+lib.uploadName = "extensions"
+lib.url = "https://github.com/iamthevoid/extensions.git"
+lib.scmUrl = "https://github.com/iamthevoid/extensions"
+lib.licenceUrl = "https://www.apache.org/licenses/LICENSE-2.0.txt"
+lib.scmConnection = "scm:git:github.com/iamthevoid/extensions.git"
+lib.scmDeveloperConnection = "scm:git:ssh://github.com/iamthevoid/extensions.git"
+deps.lib = lib
+
+def android = [:]
+android.compileSdk = 29
+android.targetSdk = 29
+android.minSdk = 14
+deps.android = android
+
+def libs = [:]
+libs.appcompat = "1.2.0"
+libs.coroutines = "1.4.3"
+libs.collection = "1.0.0"
+deps.libs = libs
+
+ext.deps = deps
