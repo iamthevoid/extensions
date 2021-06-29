@@ -1,1 +1,1 @@
-[<img src="lib.svg">](https://bintray.com/beta/#/iamthevoid/maven/extensions)
+[<img src="lib.svg">](https://search.maven.org/search?q=g:io.github.iamthevoid.extensions)

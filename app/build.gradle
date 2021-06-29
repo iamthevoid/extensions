@@ -2,8 +2,6 @@ apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
 
-apply plugin: 'kotlin-android-extensions'
-
 android {
     compileSdkVersion(deps.android.compileSdk)
     defaultConfig {
@@ -24,7 +22,7 @@ android {
 
 dependencies {
 
-    implementation project(":ae")
+    implementation project(":android")
     implementation project(":util")
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])

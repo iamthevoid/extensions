@@ -8,14 +8,11 @@ import iam.thevoid.util.weak
 
 class MainActivity : Activity() {
 
-    var weakRef by weak<Activity>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         hideKeyboard()
         toggleKeyboard()
         string(R.string.app_name)
         View(this).dimen<Int>(android.R.dimen.app_icon_size)
-        weakRef = this
     }
 }

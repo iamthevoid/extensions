@@ -1,2 +1,2 @@
 include ':coroutines'
-include ':app', ':ae', ':e', ':rxe', ':util'
+include ':app', ':android', ':pure', ':rxe', ':util'

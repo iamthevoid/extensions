@@ -33,9 +33,9 @@ apply from: "${rootProject.projectDir}/gradle/publish-mavencentral.gradle"
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(':e')
+    implementation project(':pure')
 
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:${deps.api.kotlin}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${deps.api.kotlin}"
 
     implementation "androidx.appcompat:appcompat:${deps.libs.appcompat}"
 }

@@ -2,12 +2,12 @@ ext.deps = [:]
 deps = [:]
 
 def api = [:]
-api.kotlin = "1.5.0"
+api.kotlin = "1.5.20"
 api.dokka = "1.4.32"
 deps.api = api
 
 def lib = [:]
-lib.version = '0.6.6'
+lib.version = '0.6.7'
 lib.groupId = "io.github.iamthevoid.extensions"
 lib.uploadName = "extensions"
 lib.url = "https://github.com/iamthevoid/extensions.git"
@@ -24,7 +24,7 @@ android.minSdk = 14
 deps.android = android
 
 def libs = [:]
-libs.appcompat = "1.2.0"
+libs.appcompat = "1.3.0"
 libs.coroutines = "1.4.3"
 libs.collection = "1.0.0"
 deps.libs = libs
