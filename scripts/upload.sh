@@ -1,4 +1,4 @@
-./gradlew generateVersionSVG clean assemble\
+./gradlew generateVersionSVG generateReadme clean assemble\
  pure:publishReleasePublicationToSonatypeRepository\
  android:publishReleasePublicationToSonatypeRepository\
  rxe:publishReleasePublicationToSonatypeRepository\

@@ -1,6 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 apply from: 'gradle/version.gradle'
+apply from: 'gradle/readme.gradle'
 apply from: 'gradle/dependencies.gradle'
 
 buildscript {
@@ -10,7 +11,6 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.2.1'
