@@ -23,16 +23,13 @@ buildscript {
 
 allprojects {
     repositories {
-        google()
         mavenCentral()
+        google()
+        // release one
+//        maven { url "https://s01.oss.sonatype.org/service/local/repositories/iogithubiamthevoid-1008/content" }
+        maven { url "https://s01.oss.sonatype.org/service/local/repo_groups/staging/content" }
     }
 }
-
-//def property(String key) {
-//    Properties properties = new Properties()
-//    properties.load(project.rootProject.file('local.properties').newDataInputStream())
-//    return properties.getProperty(key)
-//}
 
 task clean(type: Delete) {
     delete rootProject.buildDir

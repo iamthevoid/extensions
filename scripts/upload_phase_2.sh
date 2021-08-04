@@ -1,0 +1,2 @@
+./gradlew generateVersionSVG generateReadme clean assemble\
+  android:publishReleasePublicationToSonatypeRepository
