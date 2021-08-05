@@ -13,7 +13,7 @@ implementation "io.github.iamthevoid.extensions:pure:0.6.10"
 ```
 - Android (android framework dependenciess)
 ```gradle
-implementation "io.github.iamthevoid.extensions:android:0.6.10@aar"
+implementation "io.github.iamthevoid.extensions:android:0.6.10"
 ```
 - Rx (rx-java2 dependenciess)
 ```gradle
@@ -21,7 +21,7 @@ implementation "io.github.iamthevoid.extensions:rx:0.6.10"
 ```
 - Coroutines (coroutines dependenciess)
 ```gradle
-implementation "io.github.iamthevoid.extensions:coroutines:0.6.10@jar"
+implementation "io.github.iamthevoid.extensions:coroutines:0.6.10"
 ```
 - Util (some utilites like `Optional` for Java < 8 and other)
 ```gradle

@@ -17,7 +17,7 @@ implementation "io.github.iamthevoid.extensions:pure:${deps.lib.version}"
 ```
 - Android (android framework dependenciess)
 ```gradle
-implementation "io.github.iamthevoid.extensions:android:${deps.lib.version}@aar"
+implementation "io.github.iamthevoid.extensions:android:${deps.lib.version}"
 ```
 - Rx (rx-java2 dependenciess)
 ```gradle
@@ -25,7 +25,7 @@ implementation "io.github.iamthevoid.extensions:rx:${deps.lib.version}"
 ```
 - Coroutines (coroutines dependenciess)
 ```gradle
-implementation "io.github.iamthevoid.extensions:coroutines:${deps.lib.version}@jar"
+implementation "io.github.iamthevoid.extensions:coroutines:${deps.lib.version}"
 ```
 - Util (some utilites like `Optional` for Java < 8 and other)
 ```gradle
